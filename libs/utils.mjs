@@ -13,4 +13,8 @@ export function uuidv4() {
   );
 }
 
+export function lerp(start, end, amt) {
+  return (1 - amt) * start + amt * end;
+}
+
 export default { random };

@@ -1,3 +1,4 @@
+import { lerp, random } from "../libs/utils.mjs";
 import { Particle } from "./particle.mjs";
 import { Sprite } from "./sprite.mjs";
 import { Vector2 } from "./vector2.mjs";
@@ -28,23 +29,41 @@ export class Firework extends Sprite {
     //   30
     // ).add();
 
-    for (let i = -5; i < 5; i += 0.5) {
-      for (let j = -5; j < 0; j++) {
-        let part = new Particle(
-          this.position.copy(),
-          color,
-          new Vector2(2, 2),
-          new Vector2(i, j),
-          i < 0
-            ? new Vector2(0.1, 0.2)
-            : i > 0
-            ? new Vector2(-0.1, 0.2)
-            : new Vector2(0, 0.2),
-          30
-        );
-        console.log(part);
-        part.add();
-      }
+    // for (let i = -5; i < 5; i += 0.5) {
+    //   for (let j = -5; j < 0; j += 0.5) {
+    //     console.log(lerp(5, -5, (i + 5) / 10), -lerp(0, -3, j / 5));
+    //     let part = new Particle(
+    //       this.position.copy(),
+    //       color,
+    //       new Vector2(2, 2),
+    //       new Vector2(lerp(5, -5, (i + 5) / 10), -lerp(0, -3, j / 5)),
+    //       i < 0
+    //         ? new Vector2(0.1, 0.2)
+    //         : i > 0
+    //         ? new Vector2(-0.1, 0.2)
+    //         : new Vector2(0, 0.2),
+    //       30
+    //     );
+    //     part.add();
+    //   }
+
+    for (let i = 0; i < 50; i++) {
+      let xDirection = random(-5, 5);
+      let yDirection = random(-7, 1);
+
+      let part = new Particle(
+        this.position.copy(),
+        "#" + Math.floor(Math.random() * 16777215).toString(16),
+        new Vector2(2, 2),
+        new Vector2(xDirection, yDirection),
+        xDirection < 0
+          ? new Vector2(0.1, 0.2)
+          : xDirection > 0
+          ? new Vector2(-0.1, 0.2)
+          : new Vector2(0, 0.2),
+        30
+      );
+      part.add();
     }
   }
 

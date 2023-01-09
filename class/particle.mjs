@@ -13,7 +13,7 @@ export class Particle extends Sprite {
     this.directionChange = directionChange;
     this.lifetime = lifetime;
 
-    this.minDirection = new Vector2(0, -3);
+    this.minDirection = new Vector2(0, -10);
     this.maxDirection = new Vector2(5, 9);
   }
 
