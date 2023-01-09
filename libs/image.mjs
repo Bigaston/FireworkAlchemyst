@@ -1,3 +1,5 @@
+"use strict";
+
 export let images = {};
 
 export function loadImages(imageArray) {

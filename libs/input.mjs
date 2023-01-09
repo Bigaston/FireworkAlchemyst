@@ -1,3 +1,5 @@
+"use strict";
+
 let canvas;
 
 export function initCanvas(c) {
