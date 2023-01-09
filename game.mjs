@@ -1,5 +1,8 @@
 "use strict";
 
+import { Particle } from "./class/particle.mjs";
+import { Sprite } from "./class/sprite.mjs";
+import { Vector2 } from "./class/vector2.mjs";
 import {
   getMousePosition,
   initCanvas,
@@ -10,19 +13,37 @@ import {
 let canvas = document.getElementById("game");
 let ctx = canvas.getContext("2d");
 
-// loadImg().then(() => {
-//   draw();
-// });
+init();
 
-initCanvas(canvas);
-initMousePosition(canvas);
+function init() {
+  // loadImg().then(() => {
+  //   draw();
+  // });
 
-setMouseStyle("./img/cat.png");
+  initCanvas(canvas);
+  initMousePosition(canvas);
 
-draw();
+  setMouseStyle("./img/cat.png");
+
+  let part = new Particle(
+    new Vector2(50, 50),
+    "#567412",
+    new Vector2(10, 10),
+    new Vector2(5, -5),
+    new Vector2(-0.1, 0.3),
+    120
+  );
+
+  part.add();
+
+  draw();
+}
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  Sprite.updateSprites();
+  Sprite.drawSprites(ctx);
 
   setTimeout(function () {
     requestAnimationFrame(draw);
