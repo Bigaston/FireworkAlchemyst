@@ -8,6 +8,8 @@ export class Particle extends Sprite {
     this.color = color;
     this.size = size;
     this.direction = direction;
+    this.baseDirection = direction.copy();
+
     this.directionChange = directionChange;
     this.lifetime = lifetime;
 
@@ -20,8 +22,12 @@ export class Particle extends Sprite {
 
     this.direction.add(this.directionChange);
 
-    if (this.direction.x < this.minDirection.x)
-      this.direction.x = this.minDirection.x;
+    // if (this.direction.x < this.minDirection.x)
+    //   this.direction.x = this.minDirection.x;
+
+    if (this.direction.x < 0 && this.baseDirection.x > 0) this.direction.x = 0;
+    if (this.direction.x > 0 && this.baseDirection.x < 0) this.direction.x = 0;
+
     if (this.direction.y < this.minDirection.y)
       this.direction.y = this.minDirection.y;
     if (this.direction.x > this.maxDirection.x)

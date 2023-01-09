@@ -13,4 +13,8 @@ export class Vector2 {
     this.x = this.x - other.x;
     this.y = this.y - other.y;
   }
+
+  copy() {
+    return new Vector2(this.x, this.y);
+  }
 }

@@ -1,5 +1,6 @@
 "use strict";
 
+import { Firework } from "./class/firework.mjs";
 import { Particle } from "./class/particle.mjs";
 import { Sprite } from "./class/sprite.mjs";
 import { Vector2 } from "./class/vector2.mjs";
@@ -25,16 +26,37 @@ function init() {
 
   setMouseStyle("./img/cat.png");
 
-  let part = new Particle(
-    new Vector2(50, 50),
-    "#567412",
-    new Vector2(10, 10),
-    new Vector2(5, -5),
-    new Vector2(-0.1, 0.3),
-    120
-  );
+  // let part = new Particle(
+  //   new Vector2(50, 50),
+  //   "#567412",
+  //   new Vector2(10, 10),
+  //   new Vector2(5, -5),
+  //   new Vector2(-0.1, 0.3),
+  //   120
+  // );
 
-  part.add();
+  // part.add();
+
+  new Firework(
+    new Vector2(325, 220),
+    new Vector2(0, -10),
+    new Vector2(-0.01, 0.3),
+    30
+  ).add();
+
+  new Firework(
+    new Vector2(325, 220),
+    new Vector2(-3, -9),
+    new Vector2(-0.01, 0.3),
+    30
+  ).add();
+
+  new Firework(
+    new Vector2(325, 220),
+    new Vector2(3, -9),
+    new Vector2(-0.01, 0.3),
+    30
+  ).add();
 
   draw();
 }
