@@ -4,14 +4,7 @@ import { Firework } from "./class/firework.mjs";
 import { Particle } from "./class/particle.mjs";
 import { Sprite } from "./class/sprite.mjs";
 import { Vector2 } from "./class/vector2.mjs";
-import {
-  getMousePosition,
-  initCanvas,
-  initMousePosition,
-  keyDown,
-  keyPressed,
-  setMouseStyle,
-} from "./libs/input.mjs";
+import { initCanvas, initMousePosition, keyDown } from "./libs/input.mjs";
 import { random } from "./libs/utils.mjs";
 
 let canvas = document.getElementById("game");
@@ -27,7 +20,7 @@ function init() {
   initCanvas(canvas);
   initMousePosition(canvas);
 
-  setMouseStyle("./img/cat.png");
+  // setMouseStyle("./img/cat.png");
 
   // let part = new Particle(
   //   new Vector2(50, 50),
@@ -73,9 +66,9 @@ function draw() {
   if (keyDown(" ")) {
     new Firework(
       new Vector2(random(200, 400), 220),
-      new Vector2(random(-10, 10), -10),
+      new Vector2(random(-10, 10), random(-10, -8)),
       new Vector2(0, 0.3),
-      30
+      random(25, 40)
     ).add();
   }
 

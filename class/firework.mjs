@@ -49,7 +49,7 @@ export class Firework extends Sprite {
 
     for (let i = 0; i < 50; i++) {
       let xDirection = random(-5, 5);
-      let yDirection = random(-7, 1);
+      let yDirection = random(-7, -3);
 
       let part = new Particle(
         this.position.copy(),
@@ -61,7 +61,7 @@ export class Firework extends Sprite {
           : xDirection > 0
           ? new Vector2(-0.1, 0.2)
           : new Vector2(0, 0.2),
-        30
+        random(20, 35)
       );
       part.add();
     }
