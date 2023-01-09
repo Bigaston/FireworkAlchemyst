@@ -8,8 +8,11 @@ import {
   getMousePosition,
   initCanvas,
   initMousePosition,
+  keyDown,
+  keyPressed,
   setMouseStyle,
 } from "./libs/input.mjs";
+import { random } from "./libs/utils.mjs";
 
 let canvas = document.getElementById("game");
 let ctx = canvas.getContext("2d");
@@ -37,26 +40,26 @@ function init() {
 
   // part.add();
 
-  new Firework(
-    new Vector2(325, 220),
-    new Vector2(0, -10),
-    new Vector2(-0.01, 0.3),
-    30
-  ).add();
+  // new Firework(
+  //   new Vector2(325, 220),
+  //   new Vector2(0, -10),
+  //   new Vector2(-0.01, 0.3),
+  //   30
+  // ).add();
 
-  new Firework(
-    new Vector2(325, 220),
-    new Vector2(-3, -9),
-    new Vector2(-0.01, 0.3),
-    30
-  ).add();
+  // new Firework(
+  //   new Vector2(325, 220),
+  //   new Vector2(-3, -9),
+  //   new Vector2(-0.01, 0.3),
+  //   30
+  // ).add();
 
-  new Firework(
-    new Vector2(325, 220),
-    new Vector2(3, -9),
-    new Vector2(-0.01, 0.3),
-    30
-  ).add();
+  // new Firework(
+  //   new Vector2(325, 220),
+  //   new Vector2(3, -9),
+  //   new Vector2(-0.01, 0.3),
+  //   30
+  // ).add();
 
   draw();
 }
@@ -66,6 +69,15 @@ function draw() {
 
   Sprite.updateSprites();
   Sprite.drawSprites(ctx);
+
+  if (keyDown(" ")) {
+    new Firework(
+      new Vector2(random(200, 400), 220),
+      new Vector2(random(-10, 10), -10),
+      new Vector2(0, 0.3),
+      30
+    ).add();
+  }
 
   setTimeout(function () {
     requestAnimationFrame(draw);
