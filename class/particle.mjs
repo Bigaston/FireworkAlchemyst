@@ -18,6 +18,8 @@ export class Particle extends Sprite {
   }
 
   update() {
+    super.update();
+
     this.lifetime--;
 
     this.direction.add(this.directionChange);
@@ -44,6 +46,8 @@ export class Particle extends Sprite {
   }
 
   draw(ctx) {
+    super.draw(ctx);
+
     ctx.beginPath();
     ctx.fillStyle = this.color;
     ctx.rect(this.position.x, this.position.y, this.size.x, this.size.y);

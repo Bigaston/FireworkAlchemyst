@@ -97,6 +97,8 @@ export class Firework extends Sprite {
   }
 
   draw(ctx) {
+    super.draw();
+
     ctx.beginPath();
     ctx.fillStyle = "#FFFFFF";
     ctx.rect(this.position.x, this.position.y, 3, 3);

@@ -6,6 +6,7 @@ import { Vector2 } from "../class/vector2.mjs";
 import { VerticalFirework } from "../class/verticalFirework.mjs";
 import { keyDown } from "../libs/input.mjs";
 import { random, randomInt } from "../libs/utils.mjs";
+import { Sprite } from "../class/sprite.mjs";
 
 export function updateFirework(canvas) {
   if (keyDown(" ")) {
@@ -13,7 +14,7 @@ export function updateFirework(canvas) {
     switch (typeFirework) {
       case 0:
         new Firework(
-          new Vector2(random(200, 400), 220),
+          new Vector2(random(200, 400), canvas.height),
           new Vector2(random(-10, 10), random(-10, -8)),
           new Vector2(0, 0.3),
           random(25, 40),
@@ -22,7 +23,7 @@ export function updateFirework(canvas) {
         break;
       case 1:
         new Firework(
-          new Vector2(random(200, 400), 220),
+          new Vector2(random(200, 400), canvas.height),
           new Vector2(random(-10, 10), random(-10, -8)),
           new Vector2(0, 0.3),
           random(25, 40),
@@ -31,7 +32,7 @@ export function updateFirework(canvas) {
         break;
       case 2:
         new VerticalFirework(
-          new Vector2(random(200, 400), 220),
+          new Vector2(random(200, 400), canvas.height),
           new Vector2(random(-10, 10), random(-10, -8)),
           new Vector2(0, 0.3),
           random(25, 40),
@@ -40,7 +41,7 @@ export function updateFirework(canvas) {
         break;
       case 3:
         new VerticalFirework(
-          new Vector2(random(200, 400), 220),
+          new Vector2(random(200, 400), canvas.height),
           new Vector2(random(-10, 10), random(-10, -8)),
           new Vector2(0, 0.3),
           random(25, 40),
@@ -49,7 +50,7 @@ export function updateFirework(canvas) {
         break;
       case 4:
         new CircleFirework(
-          new Vector2(random(200, 400), 220),
+          new Vector2(random(200, 400), canvas.height),
           new Vector2(random(-10, 10), random(-10, -8)),
           new Vector2(0, 0.3),
           random(25, 40),

@@ -1,5 +1,6 @@
 "use strict";
 
+import { Sprite } from "./class/sprite.mjs";
 import { loadImages } from "./libs/image.mjs";
 import {
   initCanvas,
@@ -7,9 +8,8 @@ import {
   keyDown,
   setMouseStyle,
 } from "./libs/input.mjs";
-import { random, randomInt } from "./libs/utils.mjs";
 import { drawFirework, updateFirework } from "./scenes/firework.mjs";
-import { drawTable, updateTable } from "./scenes/table.mjs";
+import { drawTable, initTable, updateTable } from "./scenes/table.mjs";
 
 let canvas = document.getElementById("game");
 let ctx = canvas.getContext("2d");
@@ -23,7 +23,11 @@ function init() {
     initCanvas(canvas);
     initMousePosition(canvas);
 
-    setMouseStyle("./img/cursor/hand_open.png");
+    Sprite.showDebugHitbox = true;
+
+    setMouseStyle("./img/cursor/hand_open.png", 19, 23);
+
+    initTable();
 
     draw();
   });
@@ -36,7 +40,7 @@ function draw() {
     updateTable();
     drawTable(ctx, canvas);
   } else if (scene === "firework") {
-    updateFirework();
+    updateFirework(canvas);
     drawFirework(ctx, canvas);
   }
 

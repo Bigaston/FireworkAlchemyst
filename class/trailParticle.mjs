@@ -11,6 +11,8 @@ export class TrailParticle extends Particle {
   }
 
   draw(ctx) {
+    super.draw(ctx);
+
     this.frameUntileSpawn--;
     if (this.frameUntileSpawn <= 0) {
       let particle = new TrailEffectParticle(
