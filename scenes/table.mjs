@@ -7,9 +7,9 @@ let yellowPowder, redPowder, bluePowder;
 
 export function initTable() {
   // COOR + 50, 30
-  yellowPowder = new Sprite(new Vector2(155, 139), new Vector2(53, 36));
-  redPowder = new Sprite(new Vector2(214, 118), new Vector2(52, 38));
-  bluePowder = new Sprite(new Vector2(271, 130), new Vector2(58, 39));
+  yellowPowder = new Sprite(new Vector2(155, 239), new Vector2(53, 36));
+  redPowder = new Sprite(new Vector2(214, 218), new Vector2(52, 38));
+  bluePowder = new Sprite(new Vector2(271, 230), new Vector2(58, 39));
 
   yellowPowder.add();
   redPowder.add();
@@ -43,7 +43,7 @@ export function initTable() {
 export function updateTable(canvas) {}
 
 export function drawTable(ctx, canvas) {
-  ctx.drawImage(images.table, canvas.width / 2 - images.table.width / 2, 30);
+  ctx.drawImage(images.table, canvas.width / 2 - images.table.width / 2, 130);
 
   Sprite.updateSprites();
   Sprite.drawSprites(ctx);
