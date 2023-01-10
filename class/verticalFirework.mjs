@@ -4,8 +4,16 @@ import { Particle } from "./particle.mjs";
 import { Vector2 } from "./vector2.mjs";
 
 export class VerticalFirework extends Firework {
-  constructor(position, direction, directionChange, timeBeforeExplosion) {
+  constructor(
+    position,
+    direction,
+    directionChange,
+    timeBeforeExplosion,
+    typeParticle = Particle
+  ) {
     super(position, direction, directionChange, timeBeforeExplosion);
+
+    this.typeParticle = typeParticle;
   }
 
   detonate() {
@@ -17,7 +25,7 @@ export class VerticalFirework extends Firework {
       let xDirection = random(-2, 2);
       let yDirection = random(-7, -3);
 
-      let part = new Particle(
+      let part = new this.typeParticle(
         this.position.copy(),
         color,
         new Vector2(2, 2),

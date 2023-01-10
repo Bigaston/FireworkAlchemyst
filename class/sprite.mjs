@@ -6,11 +6,14 @@ export class Sprite {
     Sprite.sprites.forEach((spr) => spr.update());
   }
   static drawSprites(ctx) {
+    Sprite.sprites.sort((sprA, sprB) => sprA.zIndex - sprB.zIndex);
     Sprite.sprites.forEach((spr) => spr.draw(ctx));
   }
 
   constructor(position) {
     this.position = position;
+
+    this.zIndex = 0;
   }
 
   add() {

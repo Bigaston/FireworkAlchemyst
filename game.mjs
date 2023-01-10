@@ -2,10 +2,16 @@
 
 import { Firework } from "./class/firework.mjs";
 import { Sprite } from "./class/sprite.mjs";
+import { TrailParticle } from "./class/trailParticle.mjs";
 import { Vector2 } from "./class/vector2.mjs";
 import { VerticalFirework } from "./class/verticalFirework.mjs";
 import { images, loadImages } from "./libs/image.mjs";
-import { initCanvas, initMousePosition, keyDown } from "./libs/input.mjs";
+import {
+  initCanvas,
+  initMousePosition,
+  keyDown,
+  setMouseStyle,
+} from "./libs/input.mjs";
 import { random } from "./libs/utils.mjs";
 
 let canvas = document.getElementById("game");
@@ -17,6 +23,8 @@ function init() {
   loadImages(["./img/table.png"]).then(() => {
     initCanvas(canvas);
     initMousePosition(canvas);
+
+    setMouseStyle("./img/cursor/hand_open.png");
 
     draw();
   });
@@ -59,7 +67,7 @@ function init() {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // ctx.drawImage(images.table, 0, 0);
+  // ctx.drawImage(images.table, 0, 0, canvas.width, canvas.height);
 
   Sprite.updateSprites();
   Sprite.drawSprites(ctx);
@@ -69,7 +77,8 @@ function draw() {
       new Vector2(random(200, 400), 220),
       new Vector2(random(-10, 10), random(-10, -8)),
       new Vector2(0, 0.3),
-      random(25, 40)
+      random(25, 40),
+      TrailParticle
     ).add();
   }
 
