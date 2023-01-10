@@ -1,6 +1,7 @@
 "use strict";
 
 import { Firework } from "./class/firework.mjs";
+import { Particle } from "./class/particle.mjs";
 import { Sprite } from "./class/sprite.mjs";
 import { TrailParticle } from "./class/trailParticle.mjs";
 import { Vector2 } from "./class/vector2.mjs";
@@ -12,7 +13,7 @@ import {
   keyDown,
   setMouseStyle,
 } from "./libs/input.mjs";
-import { random } from "./libs/utils.mjs";
+import { random, randomInt } from "./libs/utils.mjs";
 
 let canvas = document.getElementById("game");
 let ctx = canvas.getContext("2d");
@@ -73,13 +74,46 @@ function draw() {
   Sprite.drawSprites(ctx);
 
   if (keyDown(" ")) {
-    new VerticalFirework(
-      new Vector2(random(200, 400), 220),
-      new Vector2(random(-10, 10), random(-10, -8)),
-      new Vector2(0, 0.3),
-      random(25, 40),
-      TrailParticle
-    ).add();
+    let typeFirework = randomInt(0, 4);
+
+    switch (typeFirework) {
+      case 0:
+        new Firework(
+          new Vector2(random(200, 400), 220),
+          new Vector2(random(-10, 10), random(-10, -8)),
+          new Vector2(0, 0.3),
+          random(25, 40),
+          Particle
+        ).add();
+        break;
+      case 1:
+        new Firework(
+          new Vector2(random(200, 400), 220),
+          new Vector2(random(-10, 10), random(-10, -8)),
+          new Vector2(0, 0.3),
+          random(25, 40),
+          TrailParticle
+        ).add();
+        break;
+      case 2:
+        new VerticalFirework(
+          new Vector2(random(200, 400), 220),
+          new Vector2(random(-10, 10), random(-10, -8)),
+          new Vector2(0, 0.3),
+          random(25, 40),
+          Particle
+        ).add();
+        break;
+      case 3:
+        new VerticalFirework(
+          new Vector2(random(200, 400), 220),
+          new Vector2(random(-10, 10), random(-10, -8)),
+          new Vector2(0, 0.3),
+          random(25, 40),
+          TrailParticle
+        ).add();
+        break;
+    }
   }
 
   setTimeout(function () {

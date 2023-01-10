@@ -4,12 +4,20 @@ import { Sprite } from "./sprite.mjs";
 import { Vector2 } from "./vector2.mjs";
 
 export class Firework extends Sprite {
-  constructor(position, direction, directionChange, timeBeforeExplosion) {
+  constructor(
+    position,
+    direction,
+    directionChange,
+    timeBeforeExplosion,
+    typeParticle = Particle
+  ) {
     super(position);
 
     this.direction = direction;
     this.directionChange = directionChange;
     this.timeBeforeExplosion = timeBeforeExplosion;
+
+    this.typeParticle = typeParticle;
 
     this.minDirection = new Vector2(-5, -50);
     this.maxDirection = new Vector2(5, 5);
@@ -51,7 +59,7 @@ export class Firework extends Sprite {
       let xDirection = random(-5, 5);
       let yDirection = random(-7, -3);
 
-      let part = new Particle(
+      let part = new this.typeParticle(
         this.position.copy(),
         "#" + Math.floor(Math.random() * 16777215).toString(16),
         new Vector2(2, 2),
