@@ -9,9 +9,11 @@ export function loadImages(imageArray) {
         let img = new Image();
         img.src = imgFile;
 
+        let pathSplited = imgFile.split("/");
+
         img.addEventListener("load", () => {
           resolve(img);
-          images[imgFile.split(".")[0]] = img;
+          images[pathSplited[pathSplited.length - 1].split(".")[0]] = img;
         });
       });
     })
@@ -23,9 +25,11 @@ export function loadOneImage(imagePath) {
     let img = new Image();
     img.src = imgFile;
 
+    let pathSplited = imagePath.split("/");
+
     img.addEventListener("load", () => {
       resolve(img);
-      images[imagePath.split(".")[0]] = img;
+      images[pathSplited[pathSplited.length - 1].split(".")[0]] = img;
     });
   });
 }
