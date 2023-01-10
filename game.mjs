@@ -19,7 +19,16 @@ let scene = "table";
 init();
 
 function init() {
-  loadImages(["./img/table.png"]).then(() => {
+  loadImages([
+    "./img/table.png",
+    "./img/Bowl.png",
+    "./img/Cone.png",
+    "./img/Green_Powder.png",
+    "./img/Red_Powder.png",
+    "./img/Round.png",
+    "./img/Spike.png",
+    "./img/Yelow_Powder.png",
+  ]).then(() => {
     initCanvas(canvas);
     initMousePosition(canvas);
 
