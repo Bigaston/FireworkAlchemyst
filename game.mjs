@@ -1,13 +1,6 @@
 "use strict";
 
-import { CircleFirework } from "./class/circleFirework.mjs";
-import { Firework } from "./class/firework.mjs";
-import { Particle } from "./class/particle.mjs";
-import { Sprite } from "./class/sprite.mjs";
-import { TrailParticle } from "./class/trailParticle.mjs";
-import { Vector2 } from "./class/vector2.mjs";
-import { VerticalFirework } from "./class/verticalFirework.mjs";
-import { images, loadImages } from "./libs/image.mjs";
+import { loadImages } from "./libs/image.mjs";
 import {
   initCanvas,
   initMousePosition,
@@ -15,9 +8,13 @@ import {
   setMouseStyle,
 } from "./libs/input.mjs";
 import { random, randomInt } from "./libs/utils.mjs";
+import { drawFirework, updateFirework } from "./scenes/firework.mjs";
+import { drawTable, updateTable } from "./scenes/table.mjs";
 
 let canvas = document.getElementById("game");
 let ctx = canvas.getContext("2d");
+
+let scene = "table";
 
 init();
 
@@ -30,100 +27,17 @@ function init() {
 
     draw();
   });
-
-  // setMouseStyle("./img/cat.png");
-
-  // let part = new Particle(
-  //   new Vector2(50, 50),
-  //   "#567412",
-  //   new Vector2(10, 10),
-  //   new Vector2(5, -5),
-  //   new Vector2(-0.1, 0.3),
-  //   120
-  // );
-
-  // part.add();
-
-  // new Firework(
-  //   new Vector2(325, 220),
-  //   new Vector2(0, -10),
-  //   new Vector2(-0.01, 0.3),
-  //   30
-  // ).add();
-
-  // new Firework(
-  //   new Vector2(325, 220),
-  //   new Vector2(-3, -9),
-  //   new Vector2(-0.01, 0.3),
-  //   30
-  // ).add();
-
-  // new Firework(
-  //   new Vector2(325, 220),
-  //   new Vector2(3, -9),
-  //   new Vector2(-0.01, 0.3),
-  //   30
-  // ).add();
 }
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // ctx.drawImage(images.table, 0, 0, canvas.width, canvas.height);
-
-  Sprite.updateSprites();
-  Sprite.drawSprites(ctx);
-
-  if (keyDown(" ")) {
-    let typeFirework = randomInt(0, 5);
-
-    switch (typeFirework) {
-      case 0:
-        new Firework(
-          new Vector2(random(200, 400), 220),
-          new Vector2(random(-10, 10), random(-10, -8)),
-          new Vector2(0, 0.3),
-          random(25, 40),
-          Particle
-        ).add();
-        break;
-      case 1:
-        new Firework(
-          new Vector2(random(200, 400), 220),
-          new Vector2(random(-10, 10), random(-10, -8)),
-          new Vector2(0, 0.3),
-          random(25, 40),
-          TrailParticle
-        ).add();
-        break;
-      case 2:
-        new VerticalFirework(
-          new Vector2(random(200, 400), 220),
-          new Vector2(random(-10, 10), random(-10, -8)),
-          new Vector2(0, 0.3),
-          random(25, 40),
-          Particle
-        ).add();
-        break;
-      case 3:
-        new VerticalFirework(
-          new Vector2(random(200, 400), 220),
-          new Vector2(random(-10, 10), random(-10, -8)),
-          new Vector2(0, 0.3),
-          random(25, 40),
-          TrailParticle
-        ).add();
-        break;
-      case 4:
-        new CircleFirework(
-          new Vector2(random(200, 400), 220),
-          new Vector2(random(-10, 10), random(-10, -8)),
-          new Vector2(0, 0.3),
-          random(25, 40),
-          TrailParticle
-        ).add();
-        break;
-    }
+  if (scene === "table") {
+    updateTable();
+    drawTable(ctx, canvas);
+  } else if (scene === "firework") {
+    updateFirework();
+    drawFirework(ctx, canvas);
   }
 
   setTimeout(function () {
