@@ -27,7 +27,7 @@ function init() {
     "./img/Red_Powder.png",
     "./img/Round.png",
     "./img/Spike.png",
-    "./img/Yelow_Powder.png",
+    "./img/Yellow_Powder.png",
   ]).then(() => {
     initCanvas(canvas);
     initMousePosition(canvas);
