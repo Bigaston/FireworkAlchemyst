@@ -11,9 +11,13 @@ export class VerticalFirework extends Firework {
     timeBeforeExplosion,
     typeParticle = Particle
   ) {
-    super(position, direction, directionChange, timeBeforeExplosion);
-
-    this.typeParticle = typeParticle;
+    super(
+      position,
+      direction,
+      directionChange,
+      timeBeforeExplosion,
+      typeParticle
+    );
   }
 
   detonate() {

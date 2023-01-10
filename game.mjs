@@ -1,5 +1,6 @@
 "use strict";
 
+import { CircleFirework } from "./class/circleFirework.mjs";
 import { Firework } from "./class/firework.mjs";
 import { Particle } from "./class/particle.mjs";
 import { Sprite } from "./class/sprite.mjs";
@@ -74,46 +75,54 @@ function draw() {
   Sprite.drawSprites(ctx);
 
   if (keyDown(" ")) {
-    let typeFirework = randomInt(0, 4);
+    // let typeFirework = randomInt(0, 4);
 
-    switch (typeFirework) {
-      case 0:
-        new Firework(
-          new Vector2(random(200, 400), 220),
-          new Vector2(random(-10, 10), random(-10, -8)),
-          new Vector2(0, 0.3),
-          random(25, 40),
-          Particle
-        ).add();
-        break;
-      case 1:
-        new Firework(
-          new Vector2(random(200, 400), 220),
-          new Vector2(random(-10, 10), random(-10, -8)),
-          new Vector2(0, 0.3),
-          random(25, 40),
-          TrailParticle
-        ).add();
-        break;
-      case 2:
-        new VerticalFirework(
-          new Vector2(random(200, 400), 220),
-          new Vector2(random(-10, 10), random(-10, -8)),
-          new Vector2(0, 0.3),
-          random(25, 40),
-          Particle
-        ).add();
-        break;
-      case 3:
-        new VerticalFirework(
-          new Vector2(random(200, 400), 220),
-          new Vector2(random(-10, 10), random(-10, -8)),
-          new Vector2(0, 0.3),
-          random(25, 40),
-          TrailParticle
-        ).add();
-        break;
-    }
+    // switch (typeFirework) {
+    //   case 0:
+    //     new Firework(
+    //       new Vector2(random(200, 400), 220),
+    //       new Vector2(random(-10, 10), random(-10, -8)),
+    //       new Vector2(0, 0.3),
+    //       random(25, 40),
+    //       Particle
+    //     ).add();
+    //     break;
+    //   case 1:
+    //     new Firework(
+    //       new Vector2(random(200, 400), 220),
+    //       new Vector2(random(-10, 10), random(-10, -8)),
+    //       new Vector2(0, 0.3),
+    //       random(25, 40),
+    //       TrailParticle
+    //     ).add();
+    //     break;
+    //   case 2:
+    //     new VerticalFirework(
+    //       new Vector2(random(200, 400), 220),
+    //       new Vector2(random(-10, 10), random(-10, -8)),
+    //       new Vector2(0, 0.3),
+    //       random(25, 40),
+    //       Particle
+    //     ).add();
+    //     break;
+    //   case 3:
+    //     new VerticalFirework(
+    //       new Vector2(random(200, 400), 220),
+    //       new Vector2(random(-10, 10), random(-10, -8)),
+    //       new Vector2(0, 0.3),
+    //       random(25, 40),
+    //       TrailParticle
+    //     ).add();
+    //     break;
+    // }
+
+    new CircleFirework(
+      new Vector2(random(200, 400), 220),
+      new Vector2(random(-10, 10), random(-10, -8)),
+      new Vector2(0, 0.3),
+      random(25, 40),
+      TrailParticle
+    ).add();
   }
 
   setTimeout(function () {
