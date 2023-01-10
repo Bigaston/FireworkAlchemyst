@@ -36,7 +36,7 @@ function init() {
 
     setMouseStyle("./img/cursor/hand_open.png", 19, 23);
 
-    initTable();
+    initTable(canvas);
 
     draw();
   });

@@ -1,4 +1,5 @@
 import { getMousePosition } from "../libs/input.mjs";
+import { Vector2 } from "./vector2.mjs";
 
 export class Sprite {
   // Static
@@ -13,10 +14,19 @@ export class Sprite {
     Sprite.sprites.forEach((spr) => spr.draw(ctx));
   }
 
+  static fromImage(position, img) {
+    let spr = new Sprite(position, new Vector2(img.width, img.height));
+
+    spr.img = img;
+
+    return spr;
+  }
+
   // Instance
   constructor(position, size) {
     this.position = position;
     this.size = size;
+    this.img = undefined;
 
     this.zIndex = 0;
   }
@@ -69,6 +79,10 @@ export class Sprite {
       ctx.lineWidth = "3px";
       ctx.rect(this.position.x, this.position.y, this.size.x, this.size.y);
       ctx.stroke();
+    }
+
+    if (this.img !== undefined) {
+      ctx.drawImage(this.img, this.position.x, this.position.y);
     }
   }
 
