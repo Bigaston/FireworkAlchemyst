@@ -1,12 +1,14 @@
 import { CircleFirework } from "../class/circleFirework.mjs";
 import { Firework } from "../class/firework.mjs";
 import { Particle } from "../class/particle.mjs";
-import { TrailParticle } from "../class/trailParticle.mjs";
 import { Vector2 } from "../class/vector2.mjs";
 import { VerticalFirework } from "../class/verticalFirework.mjs";
-import { keyDown, keyPressed } from "../libs/input.mjs";
-import { random, randomInt } from "../libs/utils.mjs";
+import { keyPressed } from "../libs/input.mjs";
+import { random } from "../libs/utils.mjs";
 import { Sprite } from "../class/sprite.mjs";
+import { images } from "../libs/image.mjs";
+import { changeScene } from "../game.mjs";
+import { initTable } from "./table.mjs";
 
 let fireworkType = { color: undefined, type: undefined };
 
@@ -16,8 +18,20 @@ let colorTable = {
   yellow: "#fecd4a",
 };
 
-export function initFirework(firework) {
+let backCursor;
+
+export function initFirework(canvas, firework) {
   fireworkType = firework;
+  backCursor = Sprite.fromImage(new Vector2(20, 20), images.back_cursor);
+
+  backCursor.add();
+  backCursor.hoverable = true;
+
+  backCursor.addClickListener(() => {
+    Sprite.clearSprites();
+    initTable(canvas);
+    changeScene("table");
+  });
 }
 
 export function updateFirework(canvas) {
@@ -109,6 +123,8 @@ export function updateFirework(canvas) {
 }
 
 export function drawFirework(ctx, canvas) {
+  backCursor.position.y = 20 + Math.cos(Date.now() / 400) * 8;
+
   Sprite.updateSprites();
   Sprite.drawSprites(ctx);
 }

@@ -34,11 +34,12 @@ function init() {
     "./img/Yellow_Powder.png",
     "./img/Lighter.png",
     "./img/Bin.png",
+    "./img/back_cursor.png",
   ]).then(() => {
     initCanvas(canvas);
     initMousePosition(canvas);
 
-    Sprite.showDebugHitbox = true;
+    // Sprite.showDebugHitbox = true;
 
     setMouseStyle("./img/cursor/hand_open.png", 19, 23);
 

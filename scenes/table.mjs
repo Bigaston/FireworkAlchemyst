@@ -11,7 +11,12 @@ let circleModifier, upModifier, verticalModifier;
 
 let insideBowl = { color: undefined, type: undefined };
 
-export function initTable(canvas) {
+let canvas;
+
+export function initTable(can) {
+  canvas = can;
+  insideBowl = { color: undefined, type: undefined };
+
   // COOR + 50, 230
   yellowPowder = new Sprite(new Vector2(155, 339), new Vector2(53, 36));
   redPowder = new Sprite(new Vector2(214, 318), new Vector2(52, 38));
@@ -158,6 +163,6 @@ export function drawTable(ctx, canvas) {
 
 function goToFirework() {
   Sprite.clearSprites();
-  initFirework(insideBowl);
+  initFirework(canvas, insideBowl);
   changeScene("firework");
 }
