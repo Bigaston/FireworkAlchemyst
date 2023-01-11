@@ -21,35 +21,21 @@ export function initTable(canvas) {
   redPowder.add();
   bluePowder.add();
 
-  yellowPowder.onMouseEnter = () => {
-    setMouseStyle("./img/cursor/hand_close.png", 19, 23);
-    mouseOnColor = "yellow";
-  };
+  yellowPowder.hoverable = true;
+  redPowder.hoverable = true;
+  bluePowder.hoverable = true;
 
-  yellowPowder.onMouseLeave = () => {
-    setMouseStyle("./img/cursor/hand_open.png", 19, 23);
-    mouseOnColor = undefined;
-  };
+  yellowPowder.addClickListener(() => {
+    insideBowl.color = "yellow";
+  });
 
-  redPowder.onMouseEnter = () => {
-    setMouseStyle("./img/cursor/hand_close.png", 19, 23);
-    mouseOnColor = "red";
-  };
+  redPowder.addClickListener(() => {
+    insideBowl.color = "red";
+  });
 
-  redPowder.onMouseLeave = () => {
-    setMouseStyle("./img/cursor/hand_open.png", 19, 23);
-    mouseOnColor = undefined;
-  };
-
-  bluePowder.onMouseEnter = () => {
-    setMouseStyle("./img/cursor/hand_close.png", 19, 23);
-    mouseOnColor = "blue";
-  };
-
-  bluePowder.onMouseLeave = () => {
-    setMouseStyle("./img/cursor/hand_open.png", 19, 23);
-    mouseOnColor = undefined;
-  };
+  bluePowder.addClickListener(() => {
+    insideBowl.color = "blue";
+  });
 
   lighter = Sprite.fromImage(
     new Vector2(canvas.width / 4 - images.Lighter.width / 2, 35),
@@ -60,21 +46,8 @@ export function initTable(canvas) {
     images.Bin
   );
 
-  lighter.onMouseEnter = () => {
-    setMouseStyle("./img/cursor/hand_close.png", 19, 23);
-  };
-
-  lighter.onMouseLeave = () => {
-    setMouseStyle("./img/cursor/hand_open.png", 19, 23);
-  };
-
-  bin.onMouseEnter = () => {
-    setMouseStyle("./img/cursor/hand_close.png", 19, 23);
-  };
-
-  bin.onMouseLeave = () => {
-    setMouseStyle("./img/cursor/hand_open.png", 19, 23);
-  };
+  lighter.hoverable = true;
+  bin.hoverable = true;
 
   lighter.addClickListener(() => {
     if (insideBowl.color !== undefined) {
@@ -131,12 +104,6 @@ export function drawTable(ctx, canvas) {
   Sprite.updateSprites();
   Sprite.drawSprites(ctx);
 }
-
-document.addEventListener("click", (ev) => {
-  if (mouseOnColor !== undefined) insideBowl.color = mouseOnColor;
-
-  console.log(insideBowl);
-});
 
 function goToFirework() {
   Sprite.clearSprites();

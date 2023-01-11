@@ -1,10 +1,12 @@
-import { getMousePosition } from "../libs/input.mjs";
+import { getMousePosition, setMouseStyle } from "../libs/input.mjs";
 import { Vector2 } from "./vector2.mjs";
 
 export class Sprite {
   // Static
   static sprites = [];
   static showDebugHitbox = false;
+  static hoverCursor = "./img/cursor/hand_close.png";
+  static classicCursor = "./img/cursor/hand_open.png";
 
   static updateSprites() {
     Sprite.sprites.forEach((spr) => spr.update());
@@ -32,6 +34,7 @@ export class Sprite {
     this.size = size;
     this.img = undefined;
 
+    this.hoverable = false;
     this.zIndex = 0;
   }
 
@@ -45,7 +48,9 @@ export class Sprite {
 
   update() {
     if (
-      (this.onMouseEnter !== undefined || this.onMouseLeave !== undefined) &&
+      (this.onMouseEnter !== undefined ||
+        this.onMouseLeave !== undefined ||
+        this.hoverable) &&
       this.size !== undefined
     ) {
       let mousePosition = getMousePosition();
@@ -54,6 +59,10 @@ export class Sprite {
         if (this.mouseInside) {
           this.mouseInside = false;
           if (this.onMouseLeave !== undefined) this.onMouseLeave();
+
+          if (this.hoverable) {
+            setMouseStyle(Sprite.classicCursor, 19, 23);
+          }
         }
       } else {
         if (
@@ -63,12 +72,22 @@ export class Sprite {
           mousePosition.y <= this.position.y + this.size.y
         ) {
           if (!this.mouseInside) {
-            this.onMouseEnter();
+            if (this.onMouseEnter !== undefined) this.onMouseEnter();
+
+            if (this.hoverable) {
+              setMouseStyle(Sprite.hoverCursor, 19, 23);
+            }
+
             this.mouseInside = true;
           }
         } else {
           if (this.mouseInside) {
-            this.onMouseLeave();
+            if (this.onMouseEnter !== undefined) this.onMouseLeave();
+
+            if (this.hoverable) {
+              setMouseStyle(Sprite.classicCursor, 19, 23);
+            }
+
             this.mouseInside = false;
           }
         }
@@ -92,7 +111,7 @@ export class Sprite {
 
   addClickListener(func) {
     document.addEventListener("click", (ev) => {
-      if (this.mouseInside) func();
+      if (this.mouseInside) func(this);
     });
   }
 
