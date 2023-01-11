@@ -9,6 +9,7 @@ export class CircleFirework extends Firework {
     direction,
     directionChange,
     timeBeforeExplosion,
+    color,
     typeParticle = Particle
   ) {
     super(
@@ -16,14 +17,13 @@ export class CircleFirework extends Firework {
       direction,
       directionChange,
       timeBeforeExplosion,
+      color,
       typeParticle
     );
   }
 
   detonate() {
     super.remove();
-
-    const color = "#FFF176";
 
     for (let i = 0; i < 360; i = i + 16) {
       let rad = degrees_to_radians(randomInt(i - 5, i + 5));
@@ -33,7 +33,7 @@ export class CircleFirework extends Firework {
 
       let part = new this.typeParticle(
         this.position.copy(),
-        color,
+        this.color,
         new Vector2(2, 2),
         direction,
         direction.x < 0
@@ -52,7 +52,7 @@ export class CircleFirework extends Firework {
 
       part = new this.typeParticle(
         this.position.copy(),
-        color,
+        this.color,
         new Vector2(2, 2),
         direction,
         direction.x < 0

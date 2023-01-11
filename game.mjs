@@ -16,6 +16,10 @@ let ctx = canvas.getContext("2d");
 
 let scene = "table";
 
+export function changeScene(scn) {
+  scene = scn;
+}
+
 init();
 
 function init() {
@@ -23,7 +27,7 @@ function init() {
     "./img/table.png",
     "./img/Bowl.png",
     "./img/Cone.png",
-    "./img/Green_Powder.png",
+    "./img/Blue_Powder.png",
     "./img/Red_Powder.png",
     "./img/Round.png",
     "./img/Spike.png",

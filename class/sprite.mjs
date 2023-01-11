@@ -22,6 +22,10 @@ export class Sprite {
     return spr;
   }
 
+  static clearSprites() {
+    Sprite.sprites = [];
+  }
+
   // Instance
   constructor(position, size) {
     this.position = position;

@@ -1,9 +1,11 @@
 import { Sprite } from "../class/sprite.mjs";
 import { Vector2 } from "../class/vector2.mjs";
+import { changeScene } from "../game.mjs";
 import { images } from "../libs/image.mjs";
 import { setMouseStyle } from "../libs/input.mjs";
+import { initFirework } from "./firework.mjs";
 
-let yellowPowder, redPowder, greenPowder;
+let yellowPowder, redPowder, bluePowder;
 let lighter, bin;
 
 let insideBowl = { color: undefined, type: undefined };
@@ -13,11 +15,11 @@ export function initTable(canvas) {
   // COOR + 50, 30
   yellowPowder = new Sprite(new Vector2(155, 339), new Vector2(53, 36));
   redPowder = new Sprite(new Vector2(214, 318), new Vector2(52, 38));
-  greenPowder = new Sprite(new Vector2(271, 330), new Vector2(58, 39));
+  bluePowder = new Sprite(new Vector2(271, 330), new Vector2(58, 39));
 
   yellowPowder.add();
   redPowder.add();
-  greenPowder.add();
+  bluePowder.add();
 
   yellowPowder.onMouseEnter = () => {
     setMouseStyle("./img/cursor/hand_close.png", 19, 23);
@@ -39,12 +41,12 @@ export function initTable(canvas) {
     mouseOnColor = undefined;
   };
 
-  greenPowder.onMouseEnter = () => {
+  bluePowder.onMouseEnter = () => {
     setMouseStyle("./img/cursor/hand_close.png", 19, 23);
-    mouseOnColor = "green";
+    mouseOnColor = "blue";
   };
 
-  greenPowder.onMouseLeave = () => {
+  bluePowder.onMouseLeave = () => {
     setMouseStyle("./img/cursor/hand_open.png", 19, 23);
     mouseOnColor = undefined;
   };
@@ -74,7 +76,11 @@ export function initTable(canvas) {
     setMouseStyle("./img/cursor/hand_open.png", 19, 23);
   };
 
-  lighter.addClickListener(() => {});
+  lighter.addClickListener(() => {
+    if (insideBowl.color !== undefined) {
+      goToFirework();
+    }
+  });
 
   bin.addClickListener(() => {
     insideBowl = { color: undefined, type: undefined };
@@ -97,9 +103,9 @@ export function drawTable(ctx, canvas) {
   ctx.drawImage(images.Bowl, canvas.width / 2 - images.Bowl.width / 2, bowlY);
 
   switch (insideBowl.color) {
-    case "green":
+    case "blue":
       ctx.drawImage(
-        images.Green_Powder,
+        images.Blue_Powder,
         canvas.width / 2 - images.Bowl.width / 2,
         bowlY
       );
@@ -132,4 +138,8 @@ document.addEventListener("click", (ev) => {
   console.log(insideBowl);
 });
 
-function goToFirework() {}
+function goToFirework() {
+  Sprite.clearSprites();
+  initFirework(insideBowl);
+  changeScene("firework");
+}

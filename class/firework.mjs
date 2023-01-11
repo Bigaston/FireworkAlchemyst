@@ -9,6 +9,7 @@ export class Firework extends Sprite {
     direction,
     directionChange,
     timeBeforeExplosion,
+    color,
     typeParticle = Particle
   ) {
     super(position);
@@ -16,6 +17,8 @@ export class Firework extends Sprite {
     this.direction = direction;
     this.directionChange = directionChange;
     this.timeBeforeExplosion = timeBeforeExplosion;
+
+    this.color = color;
 
     this.typeParticle = typeParticle;
 
@@ -25,8 +28,6 @@ export class Firework extends Sprite {
 
   detonate() {
     super.remove();
-
-    const color = "#FFF176";
 
     // new Particle(
     //   this.position,
@@ -61,7 +62,8 @@ export class Firework extends Sprite {
 
       let part = new this.typeParticle(
         this.position.copy(),
-        "#" + Math.floor(Math.random() * 16777215).toString(16),
+        // "#" + Math.floor(Math.random() * 16777215).toString(16),
+        this.color,
         new Vector2(2, 2),
         new Vector2(xDirection, yDirection),
         xDirection < 0

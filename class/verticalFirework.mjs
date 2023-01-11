@@ -9,6 +9,7 @@ export class VerticalFirework extends Firework {
     direction,
     directionChange,
     timeBeforeExplosion,
+    color,
     typeParticle = Particle
   ) {
     super(
@@ -16,6 +17,7 @@ export class VerticalFirework extends Firework {
       direction,
       directionChange,
       timeBeforeExplosion,
+      color,
       typeParticle
     );
   }
@@ -23,15 +25,13 @@ export class VerticalFirework extends Firework {
   detonate() {
     super.remove();
 
-    const color = "#FFF176";
-
     for (let i = 0; i < 40; i++) {
       let xDirection = random(-2, 2);
       let yDirection = random(-7, -3);
 
       let part = new this.typeParticle(
         this.position.copy(),
-        color,
+        this.color,
         new Vector2(2, 2),
         new Vector2(xDirection, yDirection),
         xDirection < 0
