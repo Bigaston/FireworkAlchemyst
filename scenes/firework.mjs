@@ -22,14 +22,38 @@ export function initFirework(firework) {
 
 export function updateFirework(canvas) {
   if (keyPressed(" ")) {
-    new Firework(
-      new Vector2(random(200, 400), canvas.height),
-      new Vector2(random(-10, 10), random(-15, -12)),
-      new Vector2(0, 0.3),
-      random(30, 50),
-      colorTable[fireworkType.color],
-      Particle
-    ).add();
+    switch (fireworkType.type) {
+      case "circle":
+        new CircleFirework(
+          new Vector2(random(200, 400), canvas.height),
+          new Vector2(random(-10, 10), random(-15, -12)),
+          new Vector2(0, 0.3),
+          random(30, 50),
+          colorTable[fireworkType.color],
+          Particle
+        ).add();
+        break;
+      case "normal":
+        new Firework(
+          new Vector2(random(200, 400), canvas.height),
+          new Vector2(random(-10, 10), random(-15, -12)),
+          new Vector2(0, 0.3),
+          random(30, 50),
+          colorTable[fireworkType.color],
+          Particle
+        ).add();
+        break;
+      case "vertical":
+        new VerticalFirework(
+          new Vector2(random(200, 400), canvas.height),
+          new Vector2(random(-10, 10), random(-15, -12)),
+          new Vector2(0, 0.3),
+          random(30, 50),
+          colorTable[fireworkType.color],
+          Particle
+        ).add();
+        break;
+    }
   }
 
   // if (keyDown(" ")) {
