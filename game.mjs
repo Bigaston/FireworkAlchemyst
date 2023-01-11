@@ -28,6 +28,8 @@ function init() {
     "./img/Round.png",
     "./img/Spike.png",
     "./img/Yellow_Powder.png",
+    "./img/Lighter.png",
+    "./img/Bin.png",
   ]).then(() => {
     initCanvas(canvas);
     initMousePosition(canvas);

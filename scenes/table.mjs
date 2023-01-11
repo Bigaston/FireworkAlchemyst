@@ -4,6 +4,7 @@ import { images } from "../libs/image.mjs";
 import { setMouseStyle } from "../libs/input.mjs";
 
 let yellowPowder, redPowder, greenPowder;
+let lighter, bin;
 
 let insideBowl = { color: undefined, type: undefined };
 let mouseOnColor;
@@ -47,6 +48,40 @@ export function initTable(canvas) {
     setMouseStyle("./img/cursor/hand_open.png", 19, 23);
     mouseOnColor = undefined;
   };
+
+  lighter = Sprite.fromImage(
+    new Vector2(canvas.width / 4 - images.Lighter.width / 2, 35),
+    images.Lighter
+  );
+  bin = Sprite.fromImage(
+    new Vector2((canvas.width / 4) * 3 - images.Bin.width / 2, 55),
+    images.Bin
+  );
+
+  lighter.onMouseEnter = () => {
+    setMouseStyle("./img/cursor/hand_close.png", 19, 23);
+  };
+
+  lighter.onMouseLeave = () => {
+    setMouseStyle("./img/cursor/hand_open.png", 19, 23);
+  };
+
+  bin.onMouseEnter = () => {
+    setMouseStyle("./img/cursor/hand_close.png", 19, 23);
+  };
+
+  bin.onMouseLeave = () => {
+    setMouseStyle("./img/cursor/hand_open.png", 19, 23);
+  };
+
+  lighter.addClickListener(() => {});
+
+  bin.addClickListener(() => {
+    insideBowl = { color: undefined, type: undefined };
+  });
+
+  lighter.add();
+  bin.add();
 }
 
 export function updateTable(canvas) {}
@@ -55,7 +90,10 @@ export function drawTable(ctx, canvas) {
   ctx.drawImage(images.table, canvas.width / 2 - images.table.width / 2, 230);
 
   let bowlY = 35 + Math.cos(Date.now() / 400) * 8;
+  let thingY = Math.cos((Date.now() + 200) / 400) * 8;
 
+  lighter.position.y = thingY + 35;
+  bin.position.y = thingY + 55;
   ctx.drawImage(images.Bowl, canvas.width / 2 - images.Bowl.width / 2, bowlY);
 
   switch (insideBowl.color) {
@@ -93,3 +131,5 @@ document.addEventListener("click", (ev) => {
 
   console.log(insideBowl);
 });
+
+function goToFirework() {}

@@ -86,6 +86,12 @@ export class Sprite {
     }
   }
 
+  addClickListener(func) {
+    document.addEventListener("click", (ev) => {
+      if (this.mouseInside) func();
+    });
+  }
+
   mouseInside = false;
   onMouseEnter = undefined;
   onMouseLeave = undefined;
