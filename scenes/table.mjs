@@ -8,8 +8,9 @@ import { initFirework } from "./firework.mjs";
 let yellowPowder, redPowder, bluePowder;
 let lighter, bin;
 let circleModifier, upModifier, verticalModifier;
+let blinkModifier, trailModifier;
 
-let insideBowl = { color: undefined, type: undefined };
+let insideBowl = { color: undefined, type: undefined, modifier: undefined };
 
 let canvas;
 
@@ -17,7 +18,7 @@ export function initTable(can) {
   setMouseStyle("./img/cursor/hand_open.png", 19, 23);
 
   canvas = can;
-  insideBowl = { color: undefined, type: undefined };
+  insideBowl = { color: undefined, type: undefined, modifier: undefined };
 
   // COOR + 50, 230
   yellowPowder = new Sprite(new Vector2(155, 339), new Vector2(53, 36));
@@ -44,7 +45,7 @@ export function initTable(can) {
     insideBowl.color = "blue";
   });
 
-  // Modifier
+  // Type
   circleModifier = new Sprite(new Vector2(250, 267), new Vector2(25, 24));
   upModifier = new Sprite(new Vector2(291, 254), new Vector2(23, 37));
   verticalModifier = new Sprite(new Vector2(329, 261), new Vector2(22, 30));
@@ -88,11 +89,29 @@ export function initTable(can) {
   });
 
   bin.addClickListener(() => {
-    insideBowl = { color: undefined, type: undefined };
+    insideBowl = { color: undefined, type: undefined, modifier: undefined };
   });
 
   lighter.add();
   bin.add();
+
+  // Modifier
+  blinkModifier = new Sprite(new Vector2(367, 325), new Vector2(28, 32));
+  trailModifier = new Sprite(new Vector2(408, 343), new Vector2(71, 43));
+
+  blinkModifier.hoverable = true;
+  trailModifier.hoverable = true;
+
+  blinkModifier.addClickListener(() => {
+    insideBowl.modifier = "blink";
+  });
+
+  trailModifier.addClickListener(() => {
+    insideBowl.modifier = "trail";
+  });
+
+  blinkModifier.add();
+  trailModifier.add();
 }
 
 export function updateTable(canvas) {}
@@ -155,6 +174,28 @@ export function drawTable(ctx, canvas) {
         images.Spike,
         canvas.width / 2 - images.Bowl.width / 2,
         bowlY
+      );
+      break;
+  }
+
+  switch (insideBowl.modifier) {
+    case "blink":
+      ctx.drawImage(
+        images.Bowl_Blink,
+        canvas.width / 2 - images.Bowl.width / 2,
+        bowlY,
+        200,
+        151
+      );
+      break;
+
+    case "trail":
+      ctx.drawImage(
+        images.Bowl_Trails,
+        canvas.width / 2 - images.Bowl.width / 2,
+        bowlY,
+        200,
+        151
       );
       break;
   }

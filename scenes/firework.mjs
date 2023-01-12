@@ -10,8 +10,9 @@ import { images } from "../libs/image.mjs";
 import { changeScene } from "../game.mjs";
 import { initTable } from "./table.mjs";
 import { BlinkParticle } from "../class/blinkParticle.mjs";
+import { TrailParticle } from "../class/trailParticle.mjs";
 
-let fireworkType = { color: undefined, type: undefined };
+let fireworkType = { color: undefined, type: undefined, modifier: undefined };
 
 let colorTable = {
   red: "#d85d41",
@@ -39,6 +40,20 @@ export function initFirework(canvas, firework) {
 
 export function updateFirework(canvas) {
   if (keyPressed(" ")) {
+    let particle;
+
+    switch (fireworkType.modifier) {
+      case "trail":
+        particle = TrailParticle;
+        break;
+      case "blink":
+        particle = BlinkParticle;
+        break;
+      default:
+        particle = Particle;
+        break;
+    }
+
     switch (fireworkType.type) {
       case "circle":
         new CircleFirework(
@@ -47,7 +62,7 @@ export function updateFirework(canvas) {
           new Vector2(0, 0.3),
           random(30, 50),
           colorTable[fireworkType.color],
-          Particle
+          particle
         ).add();
         break;
       case "normal":
@@ -57,7 +72,7 @@ export function updateFirework(canvas) {
           new Vector2(0, 0.3),
           random(30, 50),
           colorTable[fireworkType.color],
-          Particle
+          particle
         ).add();
         break;
       case "vertical":
@@ -67,7 +82,7 @@ export function updateFirework(canvas) {
           new Vector2(0, 0.3),
           random(30, 50),
           colorTable[fireworkType.color],
-          Particle
+          particle
         ).add();
         break;
     }

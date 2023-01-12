@@ -2,12 +2,7 @@
 
 import { Sprite } from "./class/sprite.mjs";
 import { loadImages } from "./libs/image.mjs";
-import {
-  initCanvas,
-  initMousePosition,
-  keyDown,
-  setMouseStyle,
-} from "./libs/input.mjs";
+import { initCanvas, initMousePosition, setMouseStyle } from "./libs/input.mjs";
 import { drawFirework, updateFirework } from "./scenes/firework.mjs";
 import { drawTable, initTable, updateTable } from "./scenes/table.mjs";
 
@@ -38,6 +33,8 @@ function init() {
     "./img/particle/Firework_01.png",
     "./img/particle/Firework_02.png",
     "./img/particle/Firework_03.png",
+    "./img/Bowl_Blink.png",
+    "./img/Bowl_Trails.png",
   ]).then(() => {
     initCanvas(canvas);
     initMousePosition(canvas);
