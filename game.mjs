@@ -35,6 +35,9 @@ function init() {
     "./img/Lighter.png",
     "./img/Bin.png",
     "./img/back_cursor.png",
+    "./img/particle/Firework_01.png",
+    "./img/particle/Firework_02.png",
+    "./img/particle/Firework_03.png",
   ]).then(() => {
     initCanvas(canvas);
     initMousePosition(canvas);

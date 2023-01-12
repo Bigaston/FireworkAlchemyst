@@ -34,4 +34,26 @@ export function loadOneImage(imagePath) {
   });
 }
 
+export function tintImage(img, color) {
+  const buffer = document.createElement("canvas");
+  buffer.width = img.width;
+  buffer.height = img.height;
+  const btx = buffer.getContext("2d");
+
+  // First draw your image to the buffer
+  btx.drawImage(img, 0, 0);
+
+  // Now we'll multiply a rectangle of your chosen color
+  btx.fillStyle = color;
+  btx.globalCompositeOperation = "multiply";
+  btx.fillRect(0, 0, buffer.width, buffer.height);
+
+  // Finally, fix masking issues you'll probably incur and optional globalAlpha
+  btx.globalAlpha = 0.5;
+  btx.globalCompositeOperation = "destination-in";
+  btx.drawImage(img, 0, 0);
+
+  return buffer;
+}
+
 export default { loadImages, loadOneImage };

@@ -41,7 +41,8 @@ export class CircleFirework extends Firework {
           : direction.x > 0
           ? new Vector2(-0.1, 0.2)
           : new Vector2(0, 0.2),
-        random(20, 35)
+        random(20, 35),
+        this.particleImgs[randomInt(0, 3)]
       );
       part.add();
 
@@ -60,7 +61,8 @@ export class CircleFirework extends Firework {
           : direction.x > 0
           ? new Vector2(-0.1, 0.2)
           : new Vector2(0, 0.2),
-        random(20, 35)
+        random(20, 35),
+        this.particleImgs[randomInt(0, 3)]
       );
       part.add();
     }

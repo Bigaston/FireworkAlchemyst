@@ -1,4 +1,4 @@
-import { random } from "../libs/utils.mjs";
+import { random, randomInt } from "../libs/utils.mjs";
 import { Firework } from "./firework.mjs";
 import { Particle } from "./particle.mjs";
 import { Vector2 } from "./vector2.mjs";
@@ -39,7 +39,8 @@ export class VerticalFirework extends Firework {
           : xDirection > 0
           ? new Vector2(-0.1, 0.2)
           : new Vector2(0, 0.2),
-        random(20, 35)
+        random(20, 35),
+        this.particleImgs[randomInt(0, 3)]
       );
       part.add();
     }

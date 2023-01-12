@@ -2,13 +2,22 @@ import { Sprite } from "./sprite.mjs";
 import { Vector2 } from "./vector2.mjs";
 
 export class Particle extends Sprite {
-  constructor(position, color, size, direction, directionChange, lifetime) {
+  constructor(
+    position,
+    color,
+    size,
+    direction,
+    directionChange,
+    lifetime,
+    image
+  ) {
     super(position);
 
     this.color = color;
     this.size = size;
     this.direction = direction;
     this.baseDirection = direction.copy();
+    this.image = image;
 
     this.directionChange = directionChange;
     this.lifetime = lifetime;
@@ -48,9 +57,13 @@ export class Particle extends Sprite {
   draw(ctx) {
     super.draw(ctx);
 
-    ctx.beginPath();
-    ctx.fillStyle = this.color;
-    ctx.rect(this.position.x, this.position.y, this.size.x, this.size.y);
-    ctx.fill();
+    if (this.image !== undefined) {
+      ctx.drawImage(this.image, this.position.x, this.position.y);
+    } else {
+      ctx.beginPath();
+      ctx.fillStyle = this.color;
+      ctx.rect(this.position.x, this.position.y, this.size.x, this.size.y);
+      ctx.fill();
+    }
   }
 }

@@ -1,4 +1,5 @@
-import { lerp, random } from "../libs/utils.mjs";
+import { images, tintImage } from "../libs/image.mjs";
+import { lerp, random, randomInt } from "../libs/utils.mjs";
 import { Particle } from "./particle.mjs";
 import { Sprite } from "./sprite.mjs";
 import { Vector2 } from "./vector2.mjs";
@@ -21,6 +22,10 @@ export class Firework extends Sprite {
     this.color = color;
 
     this.typeParticle = typeParticle;
+
+    this.particleImgs = [1, 2, 3].map((num) => {
+      return tintImage(images["Firework_0" + num], color);
+    });
 
     this.minDirection = new Vector2(-5, -50);
     this.maxDirection = new Vector2(5, 5);
@@ -71,7 +76,8 @@ export class Firework extends Sprite {
           : xDirection > 0
           ? new Vector2(-0.1, 0.2)
           : new Vector2(0, 0.2),
-        random(20, 35)
+        random(20, 35),
+        this.particleImgs[randomInt(0, 3)]
       );
       part.add();
     }

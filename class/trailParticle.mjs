@@ -2,8 +2,16 @@ import { Particle } from "./particle.mjs";
 import { TrailEffectParticle } from "./trailEffectParticle.mjs";
 
 export class TrailParticle extends Particle {
-  constructor(position, color, size, direction, directionChange, lifetime) {
-    super(position, color, size, direction, directionChange, lifetime);
+  constructor(
+    position,
+    color,
+    size,
+    direction,
+    directionChange,
+    lifetime,
+    image
+  ) {
+    super(position, color, size, direction, directionChange, lifetime, image);
 
     this.frameUntileSpawn = 0;
     this.frameBetweenSpawn = 0;
@@ -24,9 +32,13 @@ export class TrailParticle extends Particle {
       this.frameUntileSpawn = this.frameBetweenSpawn;
     }
 
-    ctx.beginPath();
-    ctx.fillStyle = this.color;
-    ctx.rect(this.position.x, this.position.y, this.size.x, this.size.y);
-    ctx.fill();
+    if (this.image !== undefined) {
+      ctx.drawImage(this.image, this.position.x, this.position.y);
+    } else {
+      ctx.beginPath();
+      ctx.fillStyle = this.color;
+      ctx.rect(this.position.x, this.position.y, this.size.x, this.size.y);
+      ctx.fill();
+    }
   }
 }
