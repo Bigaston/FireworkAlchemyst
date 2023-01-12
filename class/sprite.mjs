@@ -113,13 +113,15 @@ export class Sprite {
     document.addEventListener("click", (ev) => {
       let mousePosition = getMousePosition();
 
-      if (
-        mousePosition.x >= this.position.x &&
-        mousePosition.x <= this.position.x + this.size.x &&
-        mousePosition.y >= this.position.y &&
-        mousePosition.y <= this.position.y + this.size.y
-      ) {
-        func(this);
+      if (mousePosition !== null) {
+        if (
+          mousePosition.x >= this.position.x &&
+          mousePosition.x <= this.position.x + this.size.x &&
+          mousePosition.y >= this.position.y &&
+          mousePosition.y <= this.position.y + this.size.y
+        ) {
+          func(this);
+        }
       }
     });
   }
