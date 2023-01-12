@@ -14,6 +14,8 @@ let insideBowl = { color: undefined, type: undefined };
 let canvas;
 
 export function initTable(can) {
+  setMouseStyle("./img/cursor/hand_open.png", 19, 23);
+
   canvas = can;
   insideBowl = { color: undefined, type: undefined };
 

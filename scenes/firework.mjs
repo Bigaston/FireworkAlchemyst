@@ -3,7 +3,7 @@ import { Firework } from "../class/firework.mjs";
 import { Particle } from "../class/particle.mjs";
 import { Vector2 } from "../class/vector2.mjs";
 import { VerticalFirework } from "../class/verticalFirework.mjs";
-import { keyPressed } from "../libs/input.mjs";
+import { keyPressed, setMouseStyle } from "../libs/input.mjs";
 import { random } from "../libs/utils.mjs";
 import { Sprite } from "../class/sprite.mjs";
 import { images } from "../libs/image.mjs";
@@ -22,6 +22,8 @@ let colorTable = {
 let backCursor;
 
 export function initFirework(canvas, firework) {
+  setMouseStyle("./img/cursor/hand_open.png", 19, 23);
+
   fireworkType = firework;
   backCursor = Sprite.fromImage(new Vector2(20, 20), images.back_cursor);
 
