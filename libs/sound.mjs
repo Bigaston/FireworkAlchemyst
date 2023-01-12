@@ -19,7 +19,7 @@ let loopSound = {};
 export function startLoopSound(path) {
   loopSound[path] = new Howl({
     src: [path],
-    loopSound: true,
+    loop: true,
     autoplay: true,
     volume: 0.4,
   });
