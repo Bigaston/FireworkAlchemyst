@@ -40,7 +40,6 @@ export class BengalFirework extends Firework {
   }
 
   update() {
-    console.log("YES");
     this.timeBeforeExplosion--;
     this.frameSinceBlew++;
     this.frameSinceSound++;
@@ -58,8 +57,6 @@ export class BengalFirework extends Firework {
 
     if (this.frameSinceBlew >= this.frameBetweenBlew) {
       this.frameSinceBlew = 0;
-
-      console.log("SUMMON");
 
       for (let i = 20; i < 160; i = i + 8) {
         let rad = -degrees_to_radians(randomInt(i - 5, i + 5));
