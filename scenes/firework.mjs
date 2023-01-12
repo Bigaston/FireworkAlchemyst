@@ -9,6 +9,7 @@ import { Sprite } from "../class/sprite.mjs";
 import { images } from "../libs/image.mjs";
 import { changeScene } from "../game.mjs";
 import { initTable } from "./table.mjs";
+import { BlinkParticle } from "../class/blinkParticle.mjs";
 
 let fireworkType = { color: undefined, type: undefined };
 
