@@ -11,6 +11,7 @@ import { changeScene } from "../game.mjs";
 import { initTable } from "./table.mjs";
 import { BlinkParticle } from "../class/blinkParticle.mjs";
 import { TrailParticle } from "../class/trailParticle.mjs";
+import { playRandomSound } from "../libs/sound.mjs";
 
 let fireworkType = { color: undefined, type: undefined, modifier: undefined };
 
@@ -25,6 +26,8 @@ let backCursor;
 export function initFirework(canvas, firework) {
   setMouseStyle("./img/cursor/hand_open.png", 19, 23);
 
+  document.addEventListener("click", spawnFirework);
+
   fireworkType = firework;
   backCursor = Sprite.fromImage(new Vector2(20, 20), images.back_cursor);
 
@@ -35,6 +38,7 @@ export function initFirework(canvas, firework) {
     Sprite.clearSprites();
     initTable(canvas);
     changeScene("table");
+    document.removeEventListener("click", spawnFirework);
   });
 }
 
@@ -50,10 +54,6 @@ export function drawFirework(ctx, canvas) {
   Sprite.updateSprites();
   Sprite.drawSprites(ctx);
 }
-
-document.addEventListener("click", () => {
-  spawnFirework();
-});
 
 function spawnFirework() {
   let particle;
@@ -81,6 +81,13 @@ function spawnFirework() {
         particle
       ).add();
 
+      playRandomSound([
+        "./sound/Tir/Canon-tir-léger-1.mp3",
+        "./sound/Tir/Canon-tir-léger-2.mp3",
+        "./sound/Tir/Canon-tir-lourd-1.mp3",
+        "./sound/Tir/Canon-tir-lourd-2.mp3",
+      ]);
+
       break;
     case "normal":
       new Firework(
@@ -91,6 +98,23 @@ function spawnFirework() {
         colorTable[fireworkType.color],
         particle
       ).add();
+
+      playRandomSound([
+        "./sound/Tir/Chandelle-tir-1.mp3",
+        "./sound/Tir/Chandelle-tir-2.mp3",
+        "./sound/Tir/Chandelle-tir-3.mp3",
+        "./sound/Tir/Chandelle-tir-4.mp3",
+      ]);
+
+      playRandomSound([
+        "./sound/Sifflements/Sifflement-chandelle-1.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-2.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-3.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-4.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-5.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-6.mp3",
+      ]);
+
       break;
     case "vertical":
       new VerticalFirework(
@@ -101,6 +125,21 @@ function spawnFirework() {
         colorTable[fireworkType.color],
         particle
       ).add();
+
+      playRandomSound([
+        "./sound/Tir/Chandelle-tir-1.mp3",
+        "./sound/Tir/Chandelle-tir-2.mp3",
+        "./sound/Tir/Chandelle-tir-3.mp3",
+        "./sound/Tir/Chandelle-tir-4.mp3",
+      ]);
+      playRandomSound([
+        "./sound/Sifflements/Sifflement-chandelle-1.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-2.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-3.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-4.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-5.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-6.mp3",
+      ]);
       break;
   }
 }

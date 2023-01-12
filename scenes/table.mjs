@@ -3,6 +3,7 @@ import { Vector2 } from "../class/vector2.mjs";
 import { changeScene } from "../game.mjs";
 import { images } from "../libs/image.mjs";
 import { setMouseStyle } from "../libs/input.mjs";
+import { playSound } from "../libs/sound.mjs";
 import { initFirework } from "./firework.mjs";
 
 let yellowPowder, redPowder, bluePowder;
@@ -82,8 +83,13 @@ export function initTable(can) {
   lighter.hoverable = true;
   bin.hoverable = true;
 
+  lighter.onMouseEnter = () => {
+    playSound("./sound/Briquet/Briquet-ouverture.mp3");
+  };
+
   lighter.addClickListener(() => {
     if (insideBowl.color !== undefined && insideBowl.type !== undefined) {
+      playSound("./sound/Briquet/Briquet-allumage.mp3");
       goToFirework();
       lighter.mouseInside = false;
     }
@@ -97,8 +103,8 @@ export function initTable(can) {
   bin.add();
 
   // Modifier
-  blinkModifier = new Sprite(new Vector2(367, 325), new Vector2(28, 32));
-  trailModifier = new Sprite(new Vector2(408, 343), new Vector2(71, 43));
+  blinkModifier = new Sprite(new Vector2(408, 343), new Vector2(71, 43));
+  trailModifier = new Sprite(new Vector2(367, 325), new Vector2(28, 32));
 
   blinkModifier.hoverable = true;
   trailModifier.hoverable = true;

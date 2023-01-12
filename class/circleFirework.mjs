@@ -1,3 +1,4 @@
+import { playRandomSound } from "../libs/sound.mjs";
 import { degrees_to_radians, random, randomInt } from "../libs/utils.mjs";
 import { Firework } from "./firework.mjs";
 import { Particle } from "./particle.mjs";
@@ -24,6 +25,14 @@ export class CircleFirework extends Firework {
 
   detonate() {
     super.remove();
+
+    playRandomSound([
+      "./sound/Explosions/Canon-explosion-légère-1.mp3",
+      "./sound/Explosions/Canon-explosion-légère-2.mp3",
+      "./sound/Explosions/Canon-explosion-lourde-1.mp3",
+    ]);
+    if (this.typeParticle.playParticleSound !== undefined)
+      this.typeParticle.playParticleSound();
 
     for (let i = 0; i < 360; i = i + 16) {
       let rad = degrees_to_radians(randomInt(i - 5, i + 5));

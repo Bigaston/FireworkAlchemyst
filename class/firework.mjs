@@ -1,4 +1,5 @@
 import { images, tintImage } from "../libs/image.mjs";
+import { playSound } from "../libs/sound.mjs";
 import { lerp, random, randomInt } from "../libs/utils.mjs";
 import { Particle } from "./particle.mjs";
 import { Sprite } from "./sprite.mjs";
@@ -34,32 +35,10 @@ export class Firework extends Sprite {
   detonate() {
     super.remove();
 
-    // new Particle(
-    //   this.position,
-    //   color,
-    //   new Vector2(2, 2),
-    //   new Vector2(-5, -2),
-    //   new Vector2(0.1, 0.2),
-    //   30
-    // ).add();
+    playSound("./sound/Explosions/Chandelle-explosion-1.mp3");
 
-    // for (let i = -5; i < 5; i += 0.5) {
-    //   for (let j = -5; j < 0; j += 0.5) {
-    //     console.log(lerp(5, -5, (i + 5) / 10), -lerp(0, -3, j / 5));
-    //     let part = new Particle(
-    //       this.position.copy(),
-    //       color,
-    //       new Vector2(2, 2),
-    //       new Vector2(lerp(5, -5, (i + 5) / 10), -lerp(0, -3, j / 5)),
-    //       i < 0
-    //         ? new Vector2(0.1, 0.2)
-    //         : i > 0
-    //         ? new Vector2(-0.1, 0.2)
-    //         : new Vector2(0, 0.2),
-    //       30
-    //     );
-    //     part.add();
-    //   }
+    if (this.typeParticle.playParticleSound !== undefined)
+      this.typeParticle.playParticleSound();
 
     for (let i = 0; i < 50; i++) {
       let xDirection = random(-5, 5);

@@ -1,7 +1,10 @@
+import { playRandomSound } from "../libs/sound.mjs";
 import { Sprite } from "./sprite.mjs";
 import { Vector2 } from "./vector2.mjs";
 
 export class Particle extends Sprite {
+  static playParticleSound = undefined;
+
   constructor(
     position,
     color,

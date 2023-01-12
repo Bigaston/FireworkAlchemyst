@@ -1,7 +1,19 @@
+import { playRandomSound } from "../libs/sound.mjs";
 import { Particle } from "./particle.mjs";
 import { TrailEffectParticle } from "./trailEffectParticle.mjs";
 
 export class TrailParticle extends Particle {
+  static playParticleSound = () => {
+    playRandomSound([
+      "./sound/Crepitements/Chandelle-crépitement-long-léger-1.mp3",
+      "./sound/Crepitements/Chandelle-crépitement-long-léger-2.mp3",
+      "./sound/Crepitements/Chandelle-crépitement-lourd-1.mp3",
+      "./sound/Crepitements/Chandelle-crépitement-lourd-2.mp3",
+      "./sound/Crepitements/Chandelle-crépitement-short-léger-1.mp3",
+      "./sound/Crepitements/Chandelle-crépitement-short-léger-2.mp3",
+    ]);
+  };
+
   constructor(
     position,
     color,

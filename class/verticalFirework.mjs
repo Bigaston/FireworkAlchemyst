@@ -1,3 +1,4 @@
+import { playSound } from "../libs/sound.mjs";
 import { random, randomInt } from "../libs/utils.mjs";
 import { Firework } from "./firework.mjs";
 import { Particle } from "./particle.mjs";
@@ -24,6 +25,10 @@ export class VerticalFirework extends Firework {
 
   detonate() {
     super.remove();
+
+    playSound("./sound/Explosions/Chandelle-explosion-1.mp3");
+    if (this.typeParticle.playParticleSound !== undefined)
+      this.typeParticle.playParticleSound();
 
     for (let i = 0; i < 40; i++) {
       let xDirection = random(-2, 2);

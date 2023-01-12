@@ -82,7 +82,7 @@ export class Sprite {
           }
         } else {
           if (this.mouseInside) {
-            if (this.onMouseEnter !== undefined) this.onMouseLeave();
+            if (this.onMouseLeave !== undefined) this.onMouseLeave();
 
             if (this.hoverable) {
               setMouseStyle(Sprite.classicCursor, 19, 23);
@@ -111,7 +111,16 @@ export class Sprite {
 
   addClickListener(func) {
     document.addEventListener("click", (ev) => {
-      if (this.mouseInside) func(this);
+      let mousePosition = getMousePosition();
+
+      if (
+        mousePosition.x >= this.position.x &&
+        mousePosition.x <= this.position.x + this.size.x &&
+        mousePosition.y >= this.position.y &&
+        mousePosition.y <= this.position.y + this.size.y
+      ) {
+        func(this);
+      }
     });
   }
 

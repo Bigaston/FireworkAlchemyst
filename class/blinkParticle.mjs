@@ -1,7 +1,19 @@
+import { playRandomSound } from "../libs/sound.mjs";
 import { randomInt } from "../libs/utils.mjs";
 import { Particle } from "./particle.mjs";
 
 export class BlinkParticle extends Particle {
+  static playParticleSound = () => {
+    playRandomSound([
+      "./sound/Crepitements/Chandelle-crépitement-long-léger-1.mp3",
+      "./sound/Crepitements/Chandelle-crépitement-long-léger-2.mp3",
+      "./sound/Crepitements/Chandelle-crépitement-lourd-1.mp3",
+      "./sound/Crepitements/Chandelle-crépitement-lourd-2.mp3",
+      "./sound/Crepitements/Chandelle-crépitement-short-léger-1.mp3",
+      "./sound/Crepitements/Chandelle-crépitement-short-léger-2.mp3",
+    ]);
+  };
+
   constructor(
     position,
     color,
