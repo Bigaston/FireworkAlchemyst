@@ -13,6 +13,7 @@ import { BlinkParticle } from "../class/blinkParticle.mjs";
 import { TrailParticle } from "../class/trailParticle.mjs";
 import { playRandomSound } from "../libs/sound.mjs";
 import { FireworkEmpty } from "../class/fireworkEmpty.mjs";
+import { BengalFirework } from "../class/bengalFirework.mjs";
 
 let fireworkType = { color: undefined, type: undefined, modifier: undefined };
 
@@ -143,29 +144,22 @@ function spawnFirework() {
       ]);
       break;
     default:
-      new FireworkEmpty(
-        new Vector2(random(230, 370), 500),
-        new Vector2(random(-10, 10), random(-15, -12)),
-        new Vector2(0, 0.3),
+      new BengalFirework(
+        new Vector2(random(100, 500), 500),
+        new Vector2(0, 0),
+        new Vector2(0, 0),
         random(30, 50),
         colorTable[fireworkType.color] || "#ffffff",
         particle
       ).add();
-
       playRandomSound([
-        "./sound/Tir/Chandelle-tir-1.mp3",
-        "./sound/Tir/Chandelle-tir-2.mp3",
-        "./sound/Tir/Chandelle-tir-3.mp3",
-        "./sound/Tir/Chandelle-tir-4.mp3",
+        "./sound/Crepitements/Chandelle-crépitement-long-léger-1.mp3",
+        "./sound/Crepitements/Chandelle-crépitement-long-léger-2.mp3",
+        "./sound/Crepitements/Chandelle-crépitement-lourd-1.mp3",
+        "./sound/Crepitements/Chandelle-crépitement-lourd-2.mp3",
+        "./sound/Crepitements/Chandelle-crépitement-short-léger-1.mp3",
+        "./sound/Crepitements/Chandelle-crépitement-short-léger-2.mp3",
       ]);
-
-      playRandomSound([
-        "./sound/Sifflements/Sifflement-chandelle-1.mp3",
-        "./sound/Sifflements/Sifflement-chandelle-2.mp3",
-        "./sound/Sifflements/Sifflement-chandelle-3.mp3",
-        "./sound/Sifflements/Sifflement-chandelle-4.mp3",
-        "./sound/Sifflements/Sifflement-chandelle-5.mp3",
-        "./sound/Sifflements/Sifflement-chandelle-6.mp3",
-      ]);
+      break;
   }
 }
