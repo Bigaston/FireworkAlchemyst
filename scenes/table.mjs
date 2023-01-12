@@ -116,11 +116,9 @@ export function initTable(can) {
   };
 
   lighter.addClickListener(() => {
-    if (insideBowl.color !== undefined && insideBowl.type !== undefined) {
-      playSound("./sound/Briquet/Briquet-allumage.mp3");
-      goToFirework();
-      lighter.mouseInside = false;
-    }
+    playSound("./sound/Briquet/Briquet-allumage.mp3");
+    goToFirework();
+    lighter.mouseInside = false;
   });
 
   bin.addClickListener(() => {

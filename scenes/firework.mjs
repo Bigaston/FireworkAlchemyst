@@ -12,6 +12,7 @@ import { initTable } from "./table.mjs";
 import { BlinkParticle } from "../class/blinkParticle.mjs";
 import { TrailParticle } from "../class/trailParticle.mjs";
 import { playRandomSound } from "../libs/sound.mjs";
+import { FireworkEmpty } from "../class/fireworkEmpty.mjs";
 
 let fireworkType = { color: undefined, type: undefined, modifier: undefined };
 
@@ -77,7 +78,7 @@ function spawnFirework() {
         new Vector2(random(-10, 10), random(-15, -12)),
         new Vector2(0, 0.3),
         random(30, 50),
-        colorTable[fireworkType.color],
+        colorTable[fireworkType.color] || "#ffffff",
         particle
       ).add();
 
@@ -95,7 +96,7 @@ function spawnFirework() {
         new Vector2(random(-10, 10), random(-15, -12)),
         new Vector2(0, 0.3),
         random(30, 50),
-        colorTable[fireworkType.color],
+        colorTable[fireworkType.color] || "#ffffff",
         particle
       ).add();
 
@@ -122,7 +123,7 @@ function spawnFirework() {
         new Vector2(random(-10, 10), random(-15, -12)),
         new Vector2(0, 0.3),
         random(30, 50),
-        colorTable[fireworkType.color],
+        colorTable[fireworkType.color] || "#ffffff",
         particle
       ).add();
 
@@ -141,5 +142,30 @@ function spawnFirework() {
         "./sound/Sifflements/Sifflement-chandelle-6.mp3",
       ]);
       break;
+    default:
+      new FireworkEmpty(
+        new Vector2(random(230, 370), 500),
+        new Vector2(random(-10, 10), random(-15, -12)),
+        new Vector2(0, 0.3),
+        random(30, 50),
+        colorTable[fireworkType.color] || "#ffffff",
+        particle
+      ).add();
+
+      playRandomSound([
+        "./sound/Tir/Chandelle-tir-1.mp3",
+        "./sound/Tir/Chandelle-tir-2.mp3",
+        "./sound/Tir/Chandelle-tir-3.mp3",
+        "./sound/Tir/Chandelle-tir-4.mp3",
+      ]);
+
+      playRandomSound([
+        "./sound/Sifflements/Sifflement-chandelle-1.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-2.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-3.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-4.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-5.mp3",
+        "./sound/Sifflements/Sifflement-chandelle-6.mp3",
+      ]);
   }
 }
