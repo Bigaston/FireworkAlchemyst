@@ -13,3 +13,19 @@ export function playRandomSound(path) {
     autoplay: true,
   });
 }
+
+let loopSound = {};
+
+export function startLoopSound(path) {
+  loopSound[path] = new Howl({
+    src: [path],
+    loopSound: true,
+    autoplay: true,
+    volume: 0.4,
+  });
+}
+
+export function stopLoopSound(path) {
+  loopSound[path].stop();
+  delete loopSound[path];
+}

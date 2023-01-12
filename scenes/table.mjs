@@ -3,13 +3,19 @@ import { Vector2 } from "../class/vector2.mjs";
 import { changeScene } from "../game.mjs";
 import { images } from "../libs/image.mjs";
 import { setMouseStyle } from "../libs/input.mjs";
-import { playSound } from "../libs/sound.mjs";
+import {
+  playRandomSound,
+  playSound,
+  startLoopSound,
+  stopLoopSound,
+} from "../libs/sound.mjs";
 import { initFirework } from "./firework.mjs";
 
 let yellowPowder, redPowder, bluePowder;
 let lighter, bin;
 let circleModifier, upModifier, verticalModifier;
 let blinkModifier, trailModifier;
+let cat;
 
 let insideBowl = { color: undefined, type: undefined, modifier: undefined };
 
@@ -36,14 +42,21 @@ export function initTable(can) {
 
   yellowPowder.addClickListener(() => {
     insideBowl.color = "yellow";
+    playSound("./sound/Autres/Powder-drop.mp3");
+    playSound("./sound/Autres/CeramicBowl-noise.mp3");
   });
 
   redPowder.addClickListener(() => {
     insideBowl.color = "red";
+    playSound("./sound/Autres/CeramicBowl-noise.mp3");
+
+    playSound("./sound/Autres/Powder-drop.mp3");
   });
 
   bluePowder.addClickListener(() => {
     insideBowl.color = "blue";
+    playSound("./sound/Autres/Powder-drop.mp3");
+    playSound("./sound/Autres/CeramicBowl-noise.mp3");
   });
 
   // Type
@@ -61,14 +74,29 @@ export function initTable(can) {
 
   circleModifier.addClickListener(() => {
     insideBowl.type = "circle";
+    playRandomSound([
+      "./sound/Autres/Glass-intoBowl-1.mp3",
+      "./sound/Autres/Glass-intoBowl-2.mp3",
+    ]);
+    playSound("./sound/Autres/CeramicBowl-noise.mp3");
   });
 
   upModifier.addClickListener(() => {
     insideBowl.type = "normal";
+    playRandomSound([
+      "./sound/Autres/Glass-intoBowl-1.mp3",
+      "./sound/Autres/Glass-intoBowl-2.mp3",
+    ]);
+    playSound("./sound/Autres/CeramicBowl-noise.mp3");
   });
 
   verticalModifier.addClickListener(() => {
     insideBowl.type = "vertical";
+    playRandomSound([
+      "./sound/Autres/Glass-intoBowl-1.mp3",
+      "./sound/Autres/Glass-intoBowl-2.mp3",
+    ]);
+    playSound("./sound/Autres/CeramicBowl-noise.mp3");
   });
 
   lighter = Sprite.fromImage(
@@ -97,6 +125,7 @@ export function initTable(can) {
 
   bin.addClickListener(() => {
     insideBowl = { color: undefined, type: undefined, modifier: undefined };
+    playSound("./sound/Autres/Poubelle-throw.mp3");
   });
 
   lighter.add();
@@ -111,14 +140,40 @@ export function initTable(can) {
 
   blinkModifier.addClickListener(() => {
     insideBowl.modifier = "blink";
+    playSound("./sound/Autres/M-powder-drop.mp3");
+    playSound("./sound/Autres/CeramicBowl-noise.mp3");
   });
 
   trailModifier.addClickListener(() => {
     insideBowl.modifier = "trail";
+    playSound("./sound/Autres/CeramicBowl-noise.mp3");
+    playSound("./sound/Autres/M-powder-drop.mp3");
   });
 
   blinkModifier.add();
   trailModifier.add();
+
+  // Cat
+  cat = new Sprite(new Vector2(423, 256), new Vector2(87, 51));
+
+  cat.hoverable = true;
+
+  cat.onMouseEnter = () => {
+    startLoopSound("./sound/Autres/Chat/Cat-purr.mp3");
+  };
+
+  cat.onMouseLeave = () => {
+    stopLoopSound("./sound/Autres/Chat/Cat-purr.mp3");
+  };
+
+  cat.addClickListener(() => {
+    playRandomSound([
+      "./sound/Autres/Chat/Cat-miaou-1.mp3",
+      "./sound/Autres/Chat/Cat-miaou-2.mp3",
+    ]);
+  });
+
+  cat.add();
 }
 
 export function updateTable(canvas) {}

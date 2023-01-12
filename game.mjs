@@ -39,7 +39,7 @@ function init() {
     initCanvas(canvas);
     initMousePosition(canvas);
 
-    // Sprite.showDebugHitbox = true;
+    Sprite.showDebugHitbox = true;
 
     setMouseStyle("./img/cursor/hand_open.png", 19, 23);
 
