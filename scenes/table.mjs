@@ -85,6 +85,7 @@ export function initTable(can) {
   lighter.addClickListener(() => {
     if (insideBowl.color !== undefined && insideBowl.type !== undefined) {
       goToFirework();
+      lighter.mouseInside = false;
     }
   });
 

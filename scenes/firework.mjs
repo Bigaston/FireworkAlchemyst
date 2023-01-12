@@ -40,104 +40,8 @@ export function initFirework(canvas, firework) {
 
 export function updateFirework(canvas) {
   if (keyPressed(" ")) {
-    let particle;
-
-    switch (fireworkType.modifier) {
-      case "trail":
-        particle = TrailParticle;
-        break;
-      case "blink":
-        particle = BlinkParticle;
-        break;
-      default:
-        particle = Particle;
-        break;
-    }
-
-    switch (fireworkType.type) {
-      case "circle":
-        new CircleFirework(
-          new Vector2(random(200, 400), canvas.height),
-          new Vector2(random(-10, 10), random(-15, -12)),
-          new Vector2(0, 0.3),
-          random(30, 50),
-          colorTable[fireworkType.color],
-          particle
-        ).add();
-        break;
-      case "normal":
-        new Firework(
-          new Vector2(random(200, 400), canvas.height),
-          new Vector2(random(-10, 10), random(-15, -12)),
-          new Vector2(0, 0.3),
-          random(30, 50),
-          colorTable[fireworkType.color],
-          particle
-        ).add();
-        break;
-      case "vertical":
-        new VerticalFirework(
-          new Vector2(random(200, 400), canvas.height),
-          new Vector2(random(-10, 10), random(-15, -12)),
-          new Vector2(0, 0.3),
-          random(30, 50),
-          colorTable[fireworkType.color],
-          particle
-        ).add();
-        break;
-    }
+    spawnFirework();
   }
-
-  // if (keyDown(" ")) {
-  //   let typeFirework = randomInt(0, 5);
-  //   switch (typeFirework) {
-  //     case 0:
-  //       new Firework(
-  //         new Vector2(random(200, 400), canvas.height),
-  //         new Vector2(random(-10, 10), random(-10, -8)),
-  //         new Vector2(0, 0.3),
-  //         random(25, 40),
-  //         Particle
-  //       ).add();
-  //       break;
-  //     case 1:
-  //       new Firework(
-  //         new Vector2(random(200, 400), canvas.height),
-  //         new Vector2(random(-10, 10), random(-10, -8)),
-  //         new Vector2(0, 0.3),
-  //         random(25, 40),
-  //         TrailParticle
-  //       ).add();
-  //       break;
-  //     case 2:
-  //       new VerticalFirework(
-  //         new Vector2(random(200, 400), canvas.height),
-  //         new Vector2(random(-10, 10), random(-10, -8)),
-  //         new Vector2(0, 0.3),
-  //         random(25, 40),
-  //         Particle
-  //       ).add();
-  //       break;
-  //     case 3:
-  //       new VerticalFirework(
-  //         new Vector2(random(200, 400), canvas.height),
-  //         new Vector2(random(-10, 10), random(-10, -8)),
-  //         new Vector2(0, 0.3),
-  //         random(25, 40),
-  //         TrailParticle
-  //       ).add();
-  //       break;
-  //     case 4:
-  //       new CircleFirework(
-  //         new Vector2(random(200, 400), canvas.height),
-  //         new Vector2(random(-10, 10), random(-10, -8)),
-  //         new Vector2(0, 0.3),
-  //         random(25, 40),
-  //         TrailParticle
-  //       ).add();
-  //       break;
-  //   }
-  // }
 }
 
 export function drawFirework(ctx, canvas) {
@@ -145,4 +49,58 @@ export function drawFirework(ctx, canvas) {
 
   Sprite.updateSprites();
   Sprite.drawSprites(ctx);
+}
+
+document.addEventListener("click", () => {
+  spawnFirework();
+});
+
+function spawnFirework() {
+  let particle;
+
+  switch (fireworkType.modifier) {
+    case "trail":
+      particle = TrailParticle;
+      break;
+    case "blink":
+      particle = BlinkParticle;
+      break;
+    default:
+      particle = Particle;
+      break;
+  }
+
+  switch (fireworkType.type) {
+    case "circle":
+      new CircleFirework(
+        new Vector2(random(200, 400), 500),
+        new Vector2(random(-10, 10), random(-15, -12)),
+        new Vector2(0, 0.3),
+        random(30, 50),
+        colorTable[fireworkType.color],
+        particle
+      ).add();
+
+      break;
+    case "normal":
+      new Firework(
+        new Vector2(random(200, 400), 500),
+        new Vector2(random(-10, 10), random(-15, -12)),
+        new Vector2(0, 0.3),
+        random(30, 50),
+        colorTable[fireworkType.color],
+        particle
+      ).add();
+      break;
+    case "vertical":
+      new VerticalFirework(
+        new Vector2(random(200, 400), 500),
+        new Vector2(random(-10, 10), random(-15, -12)),
+        new Vector2(0, 0.3),
+        random(30, 50),
+        colorTable[fireworkType.color],
+        particle
+      ).add();
+      break;
+  }
 }

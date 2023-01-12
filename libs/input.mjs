@@ -59,7 +59,7 @@ export function initMousePosition(can) {
     mousePosition = { x, y };
   });
 
-  canvas.addEventListener("mouseleave", (ev) => {
+  can.addEventListener("mouseleave", (ev) => {
     mousePosition = null;
   });
 }
