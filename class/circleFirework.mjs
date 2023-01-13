@@ -27,8 +27,8 @@ export class CircleFirework extends Firework {
     super.remove();
 
     playRandomSound([
-      "./sound/Explosions/Canon-explosion-légère-1.mp3",
-      "./sound/Explosions/Canon-explosion-légère-2.mp3",
+      "./sound/Explosions/Canon-explosion-legère-1.mp3",
+      "./sound/Explosions/Canon-explosion-legère-2.mp3",
       "./sound/Explosions/Canon-explosion-lourde-1.mp3",
     ]);
     if (this.typeParticle.playParticleSound !== undefined)

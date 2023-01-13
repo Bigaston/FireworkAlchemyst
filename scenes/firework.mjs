@@ -84,8 +84,8 @@ function spawnFirework() {
       ).add();
 
       playRandomSound([
-        "./sound/Tir/Canon-tir-léger-1.mp3",
-        "./sound/Tir/Canon-tir-léger-2.mp3",
+        "./sound/Tir/Canon-tir-leger-1.mp3",
+        "./sound/Tir/Canon-tir-leger-2.mp3",
         "./sound/Tir/Canon-tir-lourd-1.mp3",
         "./sound/Tir/Canon-tir-lourd-2.mp3",
       ]);
@@ -153,12 +153,12 @@ function spawnFirework() {
         particle
       ).add();
       playRandomSound([
-        "./sound/Crepitements/Chandelle-crépitement-long-léger-1.mp3",
-        "./sound/Crepitements/Chandelle-crépitement-long-léger-2.mp3",
-        "./sound/Crepitements/Chandelle-crépitement-lourd-1.mp3",
-        "./sound/Crepitements/Chandelle-crépitement-lourd-2.mp3",
-        "./sound/Crepitements/Chandelle-crépitement-short-léger-1.mp3",
-        "./sound/Crepitements/Chandelle-crépitement-short-léger-2.mp3",
+        "./sound/Crepitements/Chandelle-crepitement-long-leger-1.mp3",
+        "./sound/Crepitements/Chandelle-crepitement-long-leger-2.mp3",
+        "./sound/Crepitements/Chandelle-crepitement-lourd-1.mp3",
+        "./sound/Crepitements/Chandelle-crepitement-lourd-2.mp3",
+        "./sound/Crepitements/Chandelle-crepitement-short-leger-1.mp3",
+        "./sound/Crepitements/Chandelle-crepitement-short-leger-2.mp3",
       ]);
       break;
   }
