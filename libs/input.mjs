@@ -74,16 +74,16 @@ export function getMousePosition() {
   return mousePosition;
 }
 
-export function setMouseStyle(url, positionX, positionY) {
+export function setMouseStyle(url, positionX, positionY, placeholder) {
   if (canvas === undefined) {
     throw new Error(
       "Canvas is not initialized. Initialize function first with initCanvas"
     );
   }
 
-  canvas.style.cursor = `url("${url}") ${positionX ?? 0} ${
-    positionY ?? 0
-  }, default`;
+  canvas.style.cursor = `url("${url}") ${positionX ?? 0} ${positionY ?? 0}, ${
+    placeholder || "default"
+  }`;
 }
 
 export default { keyDown, keyPressed };

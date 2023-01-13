@@ -75,7 +75,7 @@ export class Sprite {
             if (this.onMouseEnter !== undefined) this.onMouseEnter();
 
             if (this.hoverable) {
-              setMouseStyle(Sprite.hoverCursor, 19, 23);
+              setMouseStyle(Sprite.hoverCursor, 19, 23, "pointer");
             }
 
             this.mouseInside = true;

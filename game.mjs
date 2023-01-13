@@ -1,6 +1,5 @@
 "use strict";
 
-import { Sprite } from "./class/sprite.mjs";
 import { loadImages } from "./libs/image.mjs";
 import { initCanvas, initMousePosition, setMouseStyle } from "./libs/input.mjs";
 import { drawFirework, updateFirework } from "./scenes/firework.mjs";
