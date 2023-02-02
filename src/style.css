@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+}
+
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 95vh;
+
+  cursor: url("/public/img/cursor/hand_open.png") 0 0, default;
+}
+
+#container > canvas {
+  box-shadow: 0px 0px 20px 0px #101010;
+}
