@@ -1,5 +1,6 @@
 import "./style.css";
 import * as PIXI from "pixi.js";
+import { initTable } from "./scenes/table";
 
 type SCENE = "table" | "firework";
 let scene: SCENE = "table";
@@ -11,9 +12,8 @@ export const app = new PIXI.Application({
 });
 
 // Init
-const container = new PIXI.Container();
 
-app.stage.addChild(container);
+initTable();
 
 // Update
 app.ticker.add((delta) => {});
