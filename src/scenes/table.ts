@@ -16,10 +16,10 @@ import {
 } from "../libs/sound";
 // import { initFirework } from "./firework.mjs";
 
-let yellowPowder, redPowder, bluePowder: undefined | Sprite;
-let circleModifier, upModifier, verticalModifier: undefined | Sprite;
+let yellowPowder: undefined | Sprite, redPowder: undefined | Sprite, bluePowder: undefined | Sprite;
+let circleModifier: undefined | Sprite, upModifier: undefined | Sprite, verticalModifier: undefined | Sprite;
+let lighter: undefined | Sprite, bin: undefined | Sprite;
 
-// let lighter, bin;
 // let blinkModifier, trailModifier;
 // let cat;
 
@@ -103,35 +103,30 @@ export function initTable() {
     playSound("/sound/Autres/CeramicBowl-noise.mp3");
   };
 
-  // lighter = Sprite.fromImage(
-  //   new Vector2(canvas.width / 4 - images.Lighter.width / 2, 35),
-  //   images.Lighter
-  // );
-  // bin = Sprite.fromImage(
-  //   new Vector2((canvas.width / 4) * 3 - images.Bin.width / 2, 55),
-  //   images.Bin
-  // );
+  lighter = Sprite.from("/img/Lighter.png");
+  bin = Sprite.from("/img/Bin.png");
 
-  // lighter.hoverable = true;
-  // bin.hoverable = true;
+  lighter.interactive = true;
+  bin.interactive = true;
 
-  // lighter.onMouseEnter = () => {
-  //   playSound("./sound/Briquet/Briquet-ouverture.mp3");
-  // };
+  lighter.cursor = CURSOR_CLOSE;
+  bin.cursor = CURSOR_CLOSE;
 
-  // lighter.addClickListener(() => {
-  //   playSound("./sound/Briquet/Briquet-allumage.mp3");
-  //   goToFirework();
-  //   lighter.mouseInside = false;
-  // });
+  lighter.onmouseenter = () => {
+    playSound("./sound/Briquet/Briquet-ouverture.mp3");
+  };
 
-  // bin.addClickListener(() => {
-  //   insideBowl = { color: undefined, type: undefined, modifier: undefined };
-  //   playSound("./sound/Autres/Poubelle-throw.mp3");
-  // });
+  lighter.onmousedown = () => {
+    playSound("./sound/Briquet/Briquet-allumage.mp3");
+    goToFirework();
+  };
 
-  // lighter.add();
-  // bin.add();
+  bin.onmousedown = () => {
+    insideBowl = { color: undefined, type: undefined, modifier: undefined };
+    playSound("./sound/Autres/Poubelle-throw.mp3");
+  };
+
+  app.stage.addChild(lighter, bin);
 
   // // Modifier
   // blinkModifier = new Sprite(new Vector2(408, 343), new Vector2(71, 43));
@@ -181,12 +176,13 @@ export function initTable() {
 // export function updateTable(canvas) {}
 
 export function drawTable() {
+  if (lighter  === undefined|| )
   //ctx, canvas) {
   // ctx.drawImage(images.table, canvas.width / 2 - images.table.width / 2, 230);
   // let bowlY = 35 + Math.cos(Date.now() / 400) * 8;
-  // let thingY = Math.cos((Date.now() + 200) / 400) * 8;
-  // lighter.position.y = thingY + 35;
-  // bin.position.y = thingY + 55;
+  let thingY = Math.cos((Date.now() + 200) / 400) * 8;
+  lighter.position.y = thingY + 35;
+  bin.position.y = thingY + 55;
   // ctx.drawImage(images.Bowl, canvas.width / 2 - images.Bowl.width / 2, bowlY);
   // switch (insideBowl.color) {
   //   case "blue":
