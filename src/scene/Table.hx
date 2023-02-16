@@ -41,6 +41,12 @@ class Table extends scene.Scene {
 		var lighterInteractive = new h2d.Interactive(lighterTile.width, lighterTile.height, lighterBitmap);
 		lighterInteractive.cursor = handClose;
 
+		lighterInteractive.onClick = function(e:hxd.Event) {
+			var scene = new scene.Firework(this.insideBowl);
+
+			Game.instance.setScene(scene);
+		}
+
 		// Bin
 		var binTile = hxd.Res.img.Bin.toTile();
 		binBitmap = new h2d.Bitmap(binTile, this);
