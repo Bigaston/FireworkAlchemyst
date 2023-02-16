@@ -157,6 +157,16 @@ class Table extends scene.Scene {
 		bowlContentModifierBitmap = new h2d.Bitmap(emptyTile, this);
 		bowlContentModifierBitmap.x = this.width / 2 - bowlTile.width / 2;
 		bowlContentModifierBitmap.y = 100;
+
+		// Cat
+		var cat = new h2d.Interactive(87, 51, this);
+		cat.x = 423;
+		cat.y = 256;
+		cat.cursor = handClose;
+
+		cat.onOver = function(e:hxd.Event) {}
+		cat.onOut = function(e:hxd.Event) {}
+		cat.onClick = function(e:hxd.Event) {}
 	}
 
 	public function update(dt:Float):Void {
