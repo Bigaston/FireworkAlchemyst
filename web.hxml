@@ -1,0 +1,5 @@
+-cp src
+-lib heaps
+-js game.js
+-D windowSize=650x500
+-main Game
