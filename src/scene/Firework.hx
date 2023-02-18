@@ -14,8 +14,10 @@ class Firework extends scene.Scene {
 		var globalInteractive = new h2d.Interactive(this.width, this.height, this);
 
 		globalInteractive.onClick = function(e:hxd.Event) {
-			var firework = new entity.Firework(this, new Vector2(this.width / 2, this.height), new Vector2(-4, -8), 30, new h3d.Vector(1, 1, 1, 1),
+			var firework = new entity.Firework(this, new Vector2(this.width / 2, this.height), new Vector2(-4, -8), 50, h3d.Vector.fromColor(0xFF0000, 1),
 				entity.Particle);
+
+			// firework.color = h3d.Vector.fromColor(0xFF0000);
 
 			this.elements.push(firework);
 		}

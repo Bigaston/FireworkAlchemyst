@@ -19,8 +19,18 @@ class Firework extends Bitmap implements entity.Entity {
 
 		this.direction = direction;
 		this.timeBeforeExplosion = timeBeforeExplosion;
-		this.color = color; // Inherited from h2d.Bitmap
 		this.typeParticle = typeParticle;
+
+		this.color.r = color.r;
+		this.color.g = color.g;
+		this.color.b = color.b;
+
+		// this.color.r = color.r;
+		// this.color.g = color.g;
+		// this.color.b = color.b;
+		// this.color.a = color.a;
+
+		// this.color = h3d.Vector.fromColor(0xFF0000);
 
 		this.minDirection = new Vector2(-5, -50);
 		this.maxDirection = new Vector2(5, 5);
@@ -36,8 +46,11 @@ class Firework extends Bitmap implements entity.Entity {
 		spriteBatch.hasUpdate = true;
 
 		for (i in 0...50) {
-			var xDirection = Utils.random(-5, 5);
+			var xDirection = Utils.random(-10, 10);
 			var yDirection = Utils.random(-7, -3);
+
+			var direction = new Vector2(xDirection, yDirection).normalize();
+			direction = direction.multiNumber(Utils.random(1, 7));
 
 			var particle = Type.createInstance(this.typeParticle, [
 				particleImg,
@@ -45,8 +58,7 @@ class Firework extends Bitmap implements entity.Entity {
 				this.y,
 				this.color,
 				new Vector2(2, 2),
-				new Vector2(xDirection, yDirection),
-				xDirection < 0 ? new Vector2(0.1, 0.2) : xDirection > 0 ? new Vector2(-0.1, 0.2) : new Vector2(0, 0.2),
+				direction,
 				Utils.random(40, 75)
 			]);
 
@@ -61,7 +73,7 @@ class Firework extends Bitmap implements entity.Entity {
 		this.timeBeforeExplosion -= 1;
 
 		this.direction.x *= 0.98;
-		this.direction.y += 0.10;
+		this.direction.y += 0.15;
 
 		if (this.direction.y > this.maxDirection.y)
 			this.direction.y = this.maxDirection.y;
