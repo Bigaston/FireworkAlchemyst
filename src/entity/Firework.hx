@@ -7,6 +7,8 @@ class Firework extends Bitmap implements entity.Entity {
 	public var timeBeforeExplosion:Float;
 	public var typeParticle:Class<entity.Particle>;
 
+	public var particleColor:h3d.Vector;
+
 	public var minDirection:Vector2;
 	public var maxDirection:Vector2;
 
@@ -21,9 +23,7 @@ class Firework extends Bitmap implements entity.Entity {
 		this.timeBeforeExplosion = timeBeforeExplosion;
 		this.typeParticle = typeParticle;
 
-		this.color.r = color.r;
-		this.color.g = color.g;
-		this.color.b = color.b;
+		this.particleColor = h3d.Vector.fromArray([color.r, color.g, color.b, color.a]);
 
 		// this.color.r = color.r;
 		// this.color.g = color.g;
@@ -56,7 +56,7 @@ class Firework extends Bitmap implements entity.Entity {
 				particleImg,
 				this.x,
 				this.y,
-				this.color,
+				this.particleColor,
 				new Vector2(2, 2),
 				direction,
 				Utils.random(40, 75)
