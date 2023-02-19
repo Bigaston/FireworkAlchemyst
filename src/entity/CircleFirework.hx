@@ -11,8 +11,6 @@ class CircleFirework extends entity.Firework {
 		var spriteBatch = new h2d.SpriteBatch(particleImg, super.parent);
 		spriteBatch.hasUpdate = true;
 
-		trace(super.parent);
-
 		for (i in new StepIterator(0, 360, 16)) {
 			var rad = Utils.degreesToRadians(Utils.random(i - 5, i + 5));
 
