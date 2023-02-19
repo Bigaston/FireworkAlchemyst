@@ -1,26 +1,24 @@
 package entity;
 
 class Particle extends h2d.SpriteBatch.BatchElement {
-	public var color:h3d.Vector;
-	public var size:Vector2;
 	public var direction:Vector2;
 	public var lifetime:Float;
 
 	public var minDirection:Vector2;
 	public var maxDirection:Vector2;
 
-	public function new(tile:h2d.Tile, x:Float, y:Float, color:h3d.Vector, size:Vector2, direction:Vector2, lifetime:Float) {
+	public function new(tile:h2d.Tile, x:Float, y:Float, color:h3d.Vector, direction:Vector2, lifetime:Float) {
 		super(tile);
 
 		this.x = x;
 		this.y = y;
 
-		this.r = color.r;
-		this.g = color.g;
-		this.b = color.b;
-		this.a = color.a;
+		trace(color.r, color.g, color.b, color.a);
 
-		this.size = size;
+		super.r = color.r;
+		super.g = color.g;
+		super.b = color.b;
+
 		this.direction = direction;
 		this.lifetime = lifetime;
 

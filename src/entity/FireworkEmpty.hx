@@ -7,6 +7,8 @@ class FireworkEmpty extends Firework {
 	}
 
 	override public function detonate() {
+		cast(this.parent, scene.Scene).elements.remove(this);
+
 		super.remove();
 	}
 }
