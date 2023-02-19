@@ -14,14 +14,30 @@ class CircleFirework extends entity.Firework {
 		trace(super.parent);
 
 		for (i in new StepIterator(0, 360, 16)) {
-			trace("yes");
 			var rad = Utils.degreesToRadians(Utils.random(i - 5, i + 5));
 
-			var direction = new Vector2(Math.cos(rad), Math.sin(rad));
+			var direction = new Vector2(Math.cos(rad), Math.sin(rad)).normalize();
 			direction.x = direction.x * 4;
-			direction.y = direction.y * 4;
+			direction.y = direction.y * 3;
 
 			var particle = Type.createInstance(super.typeParticle, [
+				particleImg,
+				super.x,
+				super.y,
+				super.particleColor,
+				direction,
+				Utils.random(40, 75)
+			]);
+
+			spriteBatch.add(particle);
+
+			rad = Utils.degreesToRadians(Utils.random(i - 5, i + 5));
+
+			direction = new Vector2(Math.cos(rad), Math.sin(rad)).normalize();
+			direction.x = direction.x * 2.5;
+			direction.y = direction.y * 1.5;
+
+			particle = Type.createInstance(super.typeParticle, [
 				particleImg,
 				super.x,
 				super.y,

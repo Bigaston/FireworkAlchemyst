@@ -1,7 +1,5 @@
 package scene;
 
-import entity.CircleFirework;
-
 class Firework extends scene.Scene {
 	private var insideBowl = null;
 
@@ -16,7 +14,7 @@ class Firework extends scene.Scene {
 		var globalInteractive = new h2d.Interactive(this.width, this.height, this);
 
 		globalInteractive.onClick = function(e:hxd.Event) {
-			var firework = new CircleFirework(this, new Vector2(this.width / 2, this.height), new Vector2(-4, -8), 50, h3d.Vector.fromColor(0xFF0000),
+			var firework = new entity.CircleFirework(this, new Vector2(this.width / 2, this.height), new Vector2(-4, -8), 50, h3d.Vector.fromColor(0xFF0000),
 				entity.Particle);
 
 			// firework.color = h3d.Vector.fromColor(0xFF0000);

@@ -46,10 +46,10 @@ class Firework extends Bitmap implements entity.Entity {
 		spriteBatch.hasUpdate = true;
 
 		for (i in 0...50) {
-			var xDirection = Utils.random(-10, 10);
-			var yDirection = Utils.random(-7, -3);
+			var rad = Utils.degreesToRadians(Utils.random(200, 340));
 
-			var direction = new Vector2(xDirection, yDirection).normalize();
+			var direction = new Vector2(Math.cos(rad), Math.sin(rad)).normalize();
+
 			direction = direction.multiNumber(Utils.random(1, 7));
 
 			var particle = Type.createInstance(this.typeParticle, [particleImg, this.x, this.y, this.particleColor, direction, Utils.random(40, 75)]);
