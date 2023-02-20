@@ -1,10 +1,10 @@
 package entity;
 
 class BengalFirework extends entity.Firework {
-	private var frameSinceBlew = 0;
-	private var frameBetweenBlew = 2;
-	private var frameBetweenSound = 10;
-	private var frameSinceSound = 0;
+	private var frameSinceBlew = 0.0;
+	private var frameBetweenBlew = 2.0;
+	private var frameBetweenSound = 10.0;
+	private var frameSinceSound = 0.0;
 	private var particleImg:h2d.Tile;
 	private var spriteBatch:h2d.SpriteBatch;
 
@@ -24,9 +24,9 @@ class BengalFirework extends entity.Firework {
 	}
 
 	override public function updateEntity(dt:Float) {
-		this.timeBeforeExplosion--;
-		this.frameSinceBlew++;
-		this.frameSinceSound++;
+		this.timeBeforeExplosion -= hxd.Timer.tmod;
+		this.frameSinceBlew += hxd.Timer.tmod;
+		this.frameSinceSound += hxd.Timer.tmod;
 
 		if (this.frameSinceBlew >= this.frameBetweenBlew) {
 			this.frameSinceBlew = 0;

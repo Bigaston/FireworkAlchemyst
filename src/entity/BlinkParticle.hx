@@ -18,7 +18,6 @@ class BlinkParticle extends entity.Particle {
 
 			if (this.frameSinceBlink >= this.frameBetweenBlink) {
 				this.frameSinceBlink = 0;
-				trace(super.a);
 
 				this.blink = !this.blink;
 

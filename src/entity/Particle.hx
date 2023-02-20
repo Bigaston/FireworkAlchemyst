@@ -13,8 +13,6 @@ class Particle extends h2d.SpriteBatch.BatchElement {
 		this.x = x;
 		this.y = y;
 
-		trace(color.r, color.g, color.b, color.a);
-
 		super.r = color.r;
 		super.g = color.g;
 		super.b = color.b;
