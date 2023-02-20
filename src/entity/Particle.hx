@@ -27,18 +27,18 @@ class Particle extends h2d.SpriteBatch.BatchElement {
 	}
 
 	override private function update(dt:Float):Bool {
-		this.lifetime--;
+		this.lifetime -= hxd.Timer.tmod;
 
-		this.direction.x *= 0.98;
-		this.direction.y += 0.10;
+		this.direction.x *= Math.pow(0.98, hxd.Timer.tmod);
+		this.direction.y += 0.10 * hxd.Timer.tmod;
 
 		if (this.direction.y < this.minDirection.y)
 			this.direction.y = this.minDirection.y;
 		if (this.direction.y > this.maxDirection.y)
 			this.direction.y = this.maxDirection.y;
 
-		this.x += this.direction.x;
-		this.y += this.direction.y;
+		this.x += this.direction.x * hxd.Timer.tmod;
+		this.y += this.direction.y * hxd.Timer.tmod;
 
 		return this.lifetime >= 0;
 	}

@@ -22,8 +22,6 @@ class Game extends hxd.App {
 	}
 
 	override function update(dt:Float) {
-		super.update(dt);
-
 		if (s2d is scene.Scene) {
 			cast(s2d, scene.Scene).update(dt);
 		}
