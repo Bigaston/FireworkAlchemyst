@@ -41,8 +41,14 @@ class Table extends scene.Scene {
 		var lighterInteractive = new h2d.Interactive(lighterTile.width, lighterTile.height, lighterBitmap);
 		lighterInteractive.cursor = handClose;
 
+		lighterInteractive.onOver = (e:hxd.Event) -> {
+			hxd.Res.sound.Briquet.Briquet_ouverture.play();
+		}
+
 		lighterInteractive.onClick = function(e:hxd.Event) {
 			var scene = new scene.Firework(this.insideBowl);
+
+			hxd.Res.sound.Briquet.Briquet_allumage.play();
 
 			Game.instance.setScene(scene);
 		}
@@ -62,6 +68,8 @@ class Table extends scene.Scene {
 			bowlContentPowderBitmap.tile = emptyTile;
 			bowlContentTypeBitmap.tile = emptyTile;
 			bowlContentModifierBitmap.tile = emptyTile;
+
+			hxd.Res.sound.Autres.Poubelle_throw.play();
 		};
 
 		// Powder Interactive
@@ -73,6 +81,8 @@ class Table extends scene.Scene {
 		yellowPowder.onClick = function(e:hxd.Event) {
 			insideBowl.color = "yellow";
 			bowlContentPowderBitmap.tile = hxd.Res.img.Yellow_Powder.toTile();
+			hxd.Res.sound.Autres.Powder_drop.play();
+			hxd.Res.sound.Autres.CeramicBowl_noise.play();
 		};
 
 		var redPowder = new h2d.Interactive(52, 38, this);
@@ -83,6 +93,8 @@ class Table extends scene.Scene {
 		redPowder.onClick = function(e:hxd.Event) {
 			insideBowl.color = "red";
 			bowlContentPowderBitmap.tile = hxd.Res.img.Red_Powder.toTile();
+			hxd.Res.sound.Autres.Powder_drop.play();
+			hxd.Res.sound.Autres.CeramicBowl_noise.play();
 		};
 
 		var bluePowder = new h2d.Interactive(58, 39, this);
@@ -93,6 +105,8 @@ class Table extends scene.Scene {
 		bluePowder.onClick = function(e:hxd.Event) {
 			insideBowl.color = "blue";
 			bowlContentPowderBitmap.tile = hxd.Res.img.Blue_Powder.toTile();
+			hxd.Res.sound.Autres.Powder_drop.play();
+			hxd.Res.sound.Autres.CeramicBowl_noise.play();
 		};
 
 		// Type Interactive
@@ -104,6 +118,9 @@ class Table extends scene.Scene {
 		circleType.onClick = function(e:hxd.Event) {
 			insideBowl.type = "circle";
 			bowlContentTypeBitmap.tile = hxd.Res.img.Round.toTile();
+
+			hxd.Res.sound.Autres.CeramicBowl_noise.play();
+			Sound.playRandomSound([hxd.Res.sound.Autres.Glass_intoBowl_1, hxd.Res.sound.Autres.Glass_intoBowl_2]);
 		};
 
 		var coneType = new h2d.Interactive(23, 37, this);
@@ -114,6 +131,8 @@ class Table extends scene.Scene {
 		coneType.onClick = function(e:hxd.Event) {
 			insideBowl.type = "cone";
 			bowlContentTypeBitmap.tile = hxd.Res.img.Cone.toTile();
+			hxd.Res.sound.Autres.CeramicBowl_noise.play();
+			Sound.playRandomSound([hxd.Res.sound.Autres.Glass_intoBowl_1, hxd.Res.sound.Autres.Glass_intoBowl_2]);
 		};
 
 		var verticalType = new h2d.Interactive(22, 30, this);
@@ -124,6 +143,8 @@ class Table extends scene.Scene {
 		verticalType.onClick = function(e:hxd.Event) {
 			insideBowl.type = "vertical";
 			bowlContentTypeBitmap.tile = hxd.Res.img.Vertical.toTile();
+			hxd.Res.sound.Autres.CeramicBowl_noise.play();
+			Sound.playRandomSound([hxd.Res.sound.Autres.Glass_intoBowl_1, hxd.Res.sound.Autres.Glass_intoBowl_2]);
 		};
 
 		// Modifier Interactive
@@ -135,6 +156,8 @@ class Table extends scene.Scene {
 		blinkModifier.onClick = function(e:hxd.Event) {
 			insideBowl.modifier = "blink";
 			bowlContentModifierBitmap.tile = hxd.Res.img.Bowl_Blink.toTile();
+			hxd.Res.sound.Autres.CeramicBowl_noise.play();
+			hxd.Res.sound.Autres.M_powder_drop.play();
 		};
 
 		var trailModifier = new h2d.Interactive(28, 32, this);
@@ -145,6 +168,8 @@ class Table extends scene.Scene {
 		trailModifier.onClick = function(e:hxd.Event) {
 			insideBowl.modifier = "trail";
 			bowlContentModifierBitmap.tile = hxd.Res.img.Bowl_Trail.toTile();
+			hxd.Res.sound.Autres.CeramicBowl_noise.play();
+			hxd.Res.sound.Autres.M_powder_drop.play();
 		};
 
 		var bowlTile = hxd.Res.img.Bowl.toTile();
@@ -170,9 +195,15 @@ class Table extends scene.Scene {
 		cat.y = 256;
 		cat.cursor = handClose;
 
-		cat.onOver = function(e:hxd.Event) {}
-		cat.onOut = function(e:hxd.Event) {}
-		cat.onClick = function(e:hxd.Event) {}
+		cat.onOver = function(e:hxd.Event) {
+			hxd.Res.sound.Autres.Chat.Cat_purr.play(true);
+		}
+		cat.onOut = function(e:hxd.Event) {
+			hxd.Res.sound.Autres.Chat.Cat_purr.stop();
+		}
+		cat.onClick = function(e:hxd.Event) {
+			Sound.playRandomSound([hxd.Res.sound.Autres.Chat.Cat_miaou_1, hxd.Res.sound.Autres.Chat.Cat_miaou_2]);
+		}
 	}
 
 	public function update(dt:Float):Void {
