@@ -8,7 +8,7 @@ class CircleFirework extends entity.Firework {
 
 	override public function detonate() {
 		var particleImg = hxd.Res.img.particle.Firework_01.toTile();
-		var spriteBatch = new h2d.SpriteBatch(particleImg, super.parent);
+		var spriteBatch = new h2d.SpriteBatch(particleImg, this.parent);
 		spriteBatch.hasUpdate = true;
 
 		for (i in new StepIterator(0, 360, 16)) {
@@ -18,14 +18,7 @@ class CircleFirework extends entity.Firework {
 			direction.x = direction.x * 4;
 			direction.y = direction.y * 3;
 
-			var particle = Type.createInstance(super.typeParticle, [
-				particleImg,
-				super.x,
-				super.y,
-				super.particleColor,
-				direction,
-				Utils.random(40, 75)
-			]);
+			var particle = Type.createInstance(this.typeParticle, [particleImg, this.x, this.y, this.particleColor, direction, Utils.random(40, 75)]);
 
 			spriteBatch.add(particle);
 
@@ -35,14 +28,7 @@ class CircleFirework extends entity.Firework {
 			direction.x = direction.x * 2.5;
 			direction.y = direction.y * 1.5;
 
-			particle = Type.createInstance(super.typeParticle, [
-				particleImg,
-				super.x,
-				super.y,
-				super.particleColor,
-				direction,
-				Utils.random(40, 75)
-			]);
+			particle = Type.createInstance(this.typeParticle, [particleImg, this.x, this.y, this.particleColor, direction, Utils.random(40, 75)]);
 
 			spriteBatch.add(particle);
 		}

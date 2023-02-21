@@ -13,9 +13,9 @@ class Particle extends h2d.SpriteBatch.BatchElement {
 		this.x = x;
 		this.y = y;
 
-		super.r = color.r;
-		super.g = color.g;
-		super.b = color.b;
+		this.r = color.r;
+		this.g = color.g;
+		this.b = color.b;
 
 		this.direction = direction;
 		this.lifetime = lifetime;

@@ -13,7 +13,7 @@ class BengalFirework extends entity.Firework {
 		super(parent, position, direction, timeBeforeExplosion, color, typeParticle);
 
 		particleImg = hxd.Res.img.particle.Firework_01.toTile();
-		spriteBatch = new h2d.SpriteBatch(particleImg, super.parent);
+		spriteBatch = new h2d.SpriteBatch(particleImg, this.parent);
 		spriteBatch.hasUpdate = true;
 	}
 
@@ -38,11 +38,11 @@ class BengalFirework extends entity.Firework {
 				direction.x = direction.x * Utils.random(1, 3);
 				direction.y = direction.y * Utils.random(2, 4);
 
-				var particle = Type.createInstance(super.typeParticle, [
+				var particle = Type.createInstance(this.typeParticle, [
 					this.particleImg,
-					super.x,
-					super.y,
-					super.particleColor,
+					this.x,
+					this.y,
+					this.particleColor,
 					direction,
 					Utils.random(40, 75)
 				]);

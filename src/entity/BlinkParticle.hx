@@ -22,9 +22,9 @@ class BlinkParticle extends entity.Particle {
 				this.blink = !this.blink;
 
 				if (this.blink) {
-					super.a = 1;
+					this.a = 1;
 				} else {
-					super.a = 0;
+					this.a = 0;
 				}
 			}
 		}

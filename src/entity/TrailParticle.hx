@@ -15,9 +15,9 @@ class TrailParticle extends entity.Particle {
 		if (this.frameUntilSpawn <= 0) {
 			this.frameUntilSpawn = this.frameBetweenSpawn;
 
-			var particle = new entity.TrailEffectParticle(super.t, super.x, super.y, this.trailDuration);
+			var particle = new entity.TrailEffectParticle(this.t, this.x, this.y, this.trailDuration);
 
-			super.batch.add(particle);
+			this.batch.add(particle);
 		}
 
 		return super.update(dt);
