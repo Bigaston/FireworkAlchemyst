@@ -15,23 +15,17 @@ class Firework extends Bitmap implements entity.Entity {
 	public function new(parent:h2d.Object, position:Vector2, direction:Vector2, timeBeforeExplosion:Float, color:h3d.Vector,
 			?typeParticle:Class<entity.Particle>) {
 		super(hxd.Res.img.particle.Firework_01.toTile(), parent);
-
 		this.x = position.x;
 		this.y = position.y;
-
 		this.direction = direction;
 		this.timeBeforeExplosion = timeBeforeExplosion;
 		this.typeParticle = typeParticle;
-
 		this.particleColor = h3d.Vector.fromArray([color.r, color.g, color.b, color.a]);
-
 		// this.color.r = color.r;
 		// this.color.g = color.g;
 		// this.color.b = color.b;
 		// this.color.a = color.a;
-
 		// this.color = h3d.Vector.fromColor(0xFF0000);
-
 		this.minDirection = new Vector2(-5, -50);
 		this.maxDirection = new Vector2(5, 5);
 	};

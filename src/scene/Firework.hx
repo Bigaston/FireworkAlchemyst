@@ -1,10 +1,7 @@
 package scene;
 
-import entity.BlinkParticle;
-import entity.TrailParticle;
-
 class Firework extends scene.Scene {
-	private static var colorTable = {
+	private static var colorTable:haxe.DynamicAccess<h3d.Vector> = {
 		red: h3d.Vector.fromColor(0xd85d41),
 		blue: h3d.Vector.fromColor(0x5ce4be),
 		yellow: h3d.Vector.fromColor(0xfecd4a),
@@ -27,25 +24,36 @@ class Firework extends scene.Scene {
 
 			switch (this.insideBowl.modifier) {
 				case "trail":
-					particle = TrailParticle;
+					particle = entity.TrailParticle;
 				case "blink":
-					particle = BlinkParticle;
+					particle = entity.BlinkParticle;
 
 				default:
 					particle = entity.Particle;
 			}
 
-			var firework:Firework;
+			var firework:entity.Firework;
+
+			var color:h3d.Vector;
+
+			color = Firework.colorTable.get(this.insideBowl.color);
+			if (color == null)
+				color = h3d.Vector.fromColor(0xFFFFFF);
 
 			switch (this.insideBowl.type) {
 				case "circle":
 					firework = new entity.CircleFirework(this, new Vector2(Utils.random(200, 400), 500),
-						new Vector2(Utils.random(-10, 10), Utils.random(-15, -12)),
-						Utils.random(30, 50), Firework.colorTable.get(this.insideBowl.color) || h3d.Vector.fromColor(0xFFFFFF), particle);
+						new Vector2(Utils.random(-10, 10), Utils.random(-15, -12)), Utils.random(30, 50), color, particle);
+				case "normal":
+					firework = new entity.Firework(this, new Vector2(Utils.random(200, 400), 500), new Vector2(Utils.random(-10, 10), Utils.random(-15, -12)),
+						Utils.random(30, 50), color, particle);
+				case "vertical":
+					firework = new entity.VerticalFirework(this, new Vector2(Utils.random(200, 400), 500),
+						new Vector2(Utils.random(-10, 10), Utils.random(-15, -12)), Utils.random(30, 50), color, particle);
+				default:
+					firework = new entity.BengalFirework(this, new Vector2(Utils.random(200, 400), 500),
+						new Vector2(Utils.random(-10, 10), Utils.random(-15, -12)), Utils.random(30, 50), color, particle);
 			}
-
-			var firework = new entity.Firework(this, new Vector2(this.width / 2, this.height), new Vector2(-4, -8), 50, h3d.Vector.fromColor(0xFF0000),
-				entity.TrailParticle);
 
 			this.elements.push(firework);
 		}
