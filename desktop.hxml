@@ -5,5 +5,4 @@
 -main Game
 -D windowSize=650x500
 -D windowTitle=The Firework Alchemist
--dce full
 -D release
