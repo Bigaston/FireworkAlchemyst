@@ -5,6 +5,17 @@ class TrailParticle extends entity.Particle {
 	private var frameBetweenSpawn = 0.0;
 	private var trailDuration = 10.0;
 
+	public static function playParticleSound() {
+		Sound.playRandomSound([
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_long_leger_1,
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_long_leger_2,
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_lourd_1,
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_lourd_2,
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_short_leger_1,
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_short_leger_2,
+		]);
+	}
+
 	public function new(tile:h2d.Tile, x:Float, y:Float, color:h3d.Vector, direction:Vector2, lifetime:Float) {
 		super(tile, x, y, color, direction, lifetime);
 	}

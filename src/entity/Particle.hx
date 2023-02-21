@@ -24,6 +24,8 @@ class Particle extends h2d.SpriteBatch.BatchElement {
 		this.maxDirection = new Vector2(5, 9);
 	}
 
+	public static function playParticleSound() {}
+
 	override private function update(dt:Float):Bool {
 		this.lifetime -= hxd.Timer.tmod;
 

@@ -7,6 +7,14 @@ class CircleFirework extends entity.Firework {
 	}
 
 	override public function detonate() {
+		Sound.playRandomSound([
+			hxd.Res.sound.Explosions.Canon_explosion_legere_1,
+			hxd.Res.sound.Explosions.Canon_explosion_legere_2,
+			hxd.Res.sound.Explosions.Canon_explosion_lourde_1
+		]);
+
+		Reflect.callMethod(CircleFirework, Reflect.field(this.typeParticle, "playParticleSound"), []);
+
 		var particleImg = hxd.Res.img.particle.Firework_01.toTile();
 		var spriteBatch = new h2d.SpriteBatch(particleImg, this.parent);
 		spriteBatch.hasUpdate = true;

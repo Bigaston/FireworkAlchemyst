@@ -28,6 +28,19 @@ class BengalFirework extends entity.Firework {
 		this.frameSinceBlew += hxd.Timer.tmod;
 		this.frameSinceSound += hxd.Timer.tmod;
 
+		if (this.frameSinceSound >= this.frameBetweenSound) {
+			this.frameSinceSound = 0;
+
+			Sound.playRandomSound([
+				hxd.Res.sound.Crepitements.Chandelle_crepitement_long_leger_1,
+				hxd.Res.sound.Crepitements.Chandelle_crepitement_long_leger_2,
+				hxd.Res.sound.Crepitements.Chandelle_crepitement_lourd_1,
+				hxd.Res.sound.Crepitements.Chandelle_crepitement_lourd_2,
+				hxd.Res.sound.Crepitements.Chandelle_crepitement_short_leger_1,
+				hxd.Res.sound.Crepitements.Chandelle_crepitement_short_leger_2,
+			]);
+		}
+
 		if (this.frameSinceBlew >= this.frameBetweenBlew) {
 			this.frameSinceBlew = 0;
 

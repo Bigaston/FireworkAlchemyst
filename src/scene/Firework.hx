@@ -50,15 +50,61 @@ class Firework extends scene.Scene {
 				case "circle":
 					firework = new entity.CircleFirework(this, new Vector2(Utils.random(200, 400), 500),
 						new Vector2(Utils.random(-10, 10), Utils.random(-12, -8)), Utils.random(30, 50), color, particle);
+					Sound.playRandomSound([
+						hxd.Res.sound.Tir.Canon_tir_leger_1,
+						hxd.Res.sound.Tir.Canon_tir_leger_2,
+						hxd.Res.sound.Tir.Canon_tir_lourd_1,
+						hxd.Res.sound.Tir.Canon_tir_lourd_2
+					]);
+
 				case "cone":
 					firework = new entity.Firework(this, new Vector2(Utils.random(200, 400), 500), new Vector2(Utils.random(-10, 10), Utils.random(-12, -8)),
 						Utils.random(30, 50), color, particle);
+
+					Sound.playRandomSound([
+						hxd.Res.sound.Tir.Chandelle_tir_1,
+						hxd.Res.sound.Tir.Chandelle_tir_2,
+						hxd.Res.sound.Tir.Chandelle_tir_3,
+						hxd.Res.sound.Tir.Chandelle_tir_4
+					]);
+					Sound.playRandomSound([
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_1,
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_2,
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_3,
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_4,
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_5,
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_6,
+					]);
 				case "vertical":
 					firework = new entity.VerticalFirework(this, new Vector2(Utils.random(200, 400), 500),
 						new Vector2(Utils.random(-10, 10), Utils.random(-12, -8)), Utils.random(30, 50), color, particle);
+
+					Sound.playRandomSound([
+						hxd.Res.sound.Tir.Chandelle_tir_1,
+						hxd.Res.sound.Tir.Chandelle_tir_2,
+						hxd.Res.sound.Tir.Chandelle_tir_3,
+						hxd.Res.sound.Tir.Chandelle_tir_4
+					]);
+					Sound.playRandomSound([
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_1,
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_2,
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_3,
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_4,
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_5,
+						hxd.Res.sound.Sifflements.Sifflement_chandelle_6,
+					]);
 				default:
 					firework = new entity.BengalFirework(this, new Vector2(Utils.random(200, 400), 500), new Vector2(0, 0), Utils.random(30, 50), color,
 						particle);
+
+					Sound.playRandomSound([
+						hxd.Res.sound.Crepitements.Chandelle_crepitement_long_leger_1,
+						hxd.Res.sound.Crepitements.Chandelle_crepitement_long_leger_2,
+						hxd.Res.sound.Crepitements.Chandelle_crepitement_lourd_1,
+						hxd.Res.sound.Crepitements.Chandelle_crepitement_lourd_2,
+						hxd.Res.sound.Crepitements.Chandelle_crepitement_short_leger_1,
+						hxd.Res.sound.Crepitements.Chandelle_crepitement_short_leger_2,
+					]);
 			}
 
 			this.elements.push(firework);

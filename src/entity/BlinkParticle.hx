@@ -10,6 +10,17 @@ class BlinkParticle extends entity.Particle {
 		super(tile, x, y, color, direction, lifetime);
 	}
 
+	public static function playParticleSound() {
+		Sound.playRandomSound([
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_long_leger_1,
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_long_leger_2,
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_lourd_1,
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_lourd_2,
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_short_leger_1,
+			hxd.Res.sound.Crepitements.Chandelle_crepitement_short_leger_2,
+		]);
+	}
+
 	override private function update(dt:Float):Bool {
 		if (this.frameUntilStartBlink > 0) {
 			this.frameUntilStartBlink -= hxd.Timer.tmod;

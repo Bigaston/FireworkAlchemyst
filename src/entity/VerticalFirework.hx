@@ -7,6 +7,10 @@ class VerticalFirework extends entity.Firework {
 	}
 
 	override public function detonate() {
+		Reflect.callMethod(CircleFirework, Reflect.field(this.typeParticle, "playParticleSound"), []);
+
+		hxd.Res.sound.Explosions.Chandelle_explosion_1.play();
+
 		var particleImg = hxd.Res.img.particle.Firework_01.toTile();
 		var spriteBatch = new h2d.SpriteBatch(particleImg, this.parent);
 		spriteBatch.hasUpdate = true;

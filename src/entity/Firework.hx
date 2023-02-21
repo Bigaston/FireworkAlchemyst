@@ -31,9 +31,9 @@ class Firework extends Bitmap implements entity.Entity {
 	};
 
 	public function detonate() {
-		// if (this.typeParticle.hasField("playParticleSound")) {
-		// 	this.typeParticle.playParticleSound();
-		// }
+		Reflect.callMethod(CircleFirework, Reflect.field(this.typeParticle, "playParticleSound"), []);
+
+		hxd.Res.sound.Explosions.Chandelle_explosion_1.play();
 
 		var particleImg = hxd.Res.img.particle.Firework_01.toTile();
 		var spriteBatch = new h2d.SpriteBatch(particleImg, this.parent);
