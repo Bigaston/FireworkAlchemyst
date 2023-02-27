@@ -12,12 +12,14 @@ if (!fs.existsSync("./build/")) {
   fs.mkdirSync("./build/windows");
   fs.mkdirSync("./build/windows/res");
   fs.mkdirSync("./build/web");
+  fs.mkdirSync("./build/web/old");
 } else {
   fs.rmSync("./build", { recursive: true });
   fs.mkdirSync("./build");
   fs.mkdirSync("./build/windows");
   fs.mkdirSync("./build/windows/res");
   fs.mkdirSync("./build/web");
+  fs.mkdirSync("./build/web/old");
 }
 
 console.log("Build Windows Game");
@@ -123,3 +125,6 @@ fs.copyFileSync(
   path.join(__dirname, "game.js"),
   path.join(__dirname, "build/web/game.js")
 );
+
+console.log("-Copy Old Game");
+copyDir("old", "build/web/old");

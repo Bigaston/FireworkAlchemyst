@@ -10,6 +10,7 @@ class Firework extends scene.Scene {
 	private var insideBowl = null;
 	private var handClose:hxd.Cursor;
 	private var handOpen:hxd.Cursor;
+	private var arrowBitmap:h2d.Bitmap;
 
 	public function new(insideBowl:{
 		?color:String,
@@ -111,13 +112,12 @@ class Firework extends scene.Scene {
 		}
 
 		var arrowTile = hxd.Res.img.back_cursor.toTile();
-		var arrowBitmap = new h2d.Bitmap(arrowTile, this);
-		arrowBitmap.x = 20;
-		arrowBitmap.y = 20;
+		this.arrowBitmap = new h2d.Bitmap(arrowTile, this);
+		this.arrowBitmap.x = 10;
+		this.arrowBitmap.y = 10;
 
-		var arrowInteractive = new h2d.Interactive(arrowTile.width, arrowTile.height, arrowBitmap);
+		var arrowInteractive = new h2d.Interactive(arrowTile.width, arrowTile.height, this.arrowBitmap);
 		arrowInteractive.cursor = handClose;
-
 		arrowInteractive.onClick = function(e:hxd.Event):Void {
 			var scene = new scene.Table();
 
@@ -126,6 +126,8 @@ class Firework extends scene.Scene {
 	}
 
 	public function update(dt:Float) {
+		this.arrowBitmap.y = Math.cos(((hxd.Timer.lastTimeStamp * 1000) + 200) / 400) * 8;
+
 		for (elem in this.elements) {
 			elem.updateEntity(dt);
 		}
