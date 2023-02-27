@@ -3,5 +3,4 @@
 -js game.js
 -main Game
 -D windowSize=650x500
--dce full
 -D release
