@@ -5,6 +5,8 @@ class TrailParticle extends entity.Particle {
 	private var frameBetweenSpawn = 0.0;
 	private var trailDuration = 10.0;
 
+	private var trailTile:h2d.Tile;
+
 	public static function playParticleSound() {
 		Sound.playRandomSound([
 			hxd.Res.sound.Crepitements.Chandelle_crepitement_long_leger_1,
@@ -18,6 +20,10 @@ class TrailParticle extends entity.Particle {
 
 	public function new(tile:h2d.Tile, x:Float, y:Float, color:h3d.Vector, direction:Vector2, lifetime:Float) {
 		super(tile, x, y, color, direction, lifetime);
+
+		this.trailTile = h2d.Tile.fromTexture(tile.getTexture());
+		this.trailTile.setSize(9, 9);
+		this.trailTile.setPosition(9, 0);
 	}
 
 	override private function update(dt:Float):Bool {
@@ -26,7 +32,7 @@ class TrailParticle extends entity.Particle {
 		if (this.frameUntilSpawn <= 0) {
 			this.frameUntilSpawn = this.frameBetweenSpawn;
 
-			var particle = new entity.TrailEffectParticle(this.t, this.x, this.y, this.trailDuration);
+			var particle = new entity.TrailEffectParticle(this.trailTile, this.x, this.y, this.trailDuration);
 
 			this.batch.add(particle);
 		}

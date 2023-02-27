@@ -4,7 +4,7 @@ class Utils {
 	}
 
 	public static function randomInt(min:Int, max:Int):Int {
-		return Math.floor(Math.random() * (max - min + 1)) + min;
+		return Math.floor(Math.random() * (max - min)) + min;
 	}
 
 	public static function degreesToRadians(degrees:Float):Float {

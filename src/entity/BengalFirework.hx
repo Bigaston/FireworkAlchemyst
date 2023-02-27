@@ -1,19 +1,33 @@
 package entity;
 
+import h2d.Tile;
+
 class BengalFirework extends entity.Firework {
 	private var frameSinceBlew = 0.0;
 	private var frameBetweenBlew = 2.0;
 	private var frameBetweenSound = 10.0;
 	private var frameSinceSound = 0.0;
-	private var particleImg:h2d.Tile;
 	private var spriteBatch:h2d.SpriteBatch;
+	private var particleTile:Array<Tile> = [];
 
 	public function new(parent:h2d.Object, position:Vector2, direction:Vector2, timeBeforeExplosion:Float, color:h3d.Vector,
 			?typeParticle:Class<entity.Particle>) {
 		super(parent, position, direction, timeBeforeExplosion, color, typeParticle);
 
-		particleImg = hxd.Res.img.particle.Firework_01.toTile();
-		spriteBatch = new h2d.SpriteBatch(particleImg, this.parent);
+		var particleTexture = hxd.Res.img.particle.particle.toTexture();
+		this.particleTile[0] = Tile.fromTexture(particleTexture);
+		this.particleTile[0].setPosition(0, 0);
+		this.particleTile[0].setSize(9, 9);
+
+		this.particleTile[1] = Tile.fromTexture(particleTexture);
+		this.particleTile[1].setPosition(9, 0);
+		this.particleTile[1].setSize(9, 9);
+
+		this.particleTile[2] = Tile.fromTexture(particleTexture);
+		this.particleTile[2].setPosition(18, 0);
+		this.particleTile[2].setSize(9, 9);
+
+		spriteBatch = new h2d.SpriteBatch(this.particleTile[0], this.parent);
 		spriteBatch.hasUpdate = true;
 	}
 
@@ -52,7 +66,7 @@ class BengalFirework extends entity.Firework {
 				direction.y = direction.y * Utils.random(2, 4);
 
 				var particle = Type.createInstance(this.typeParticle, [
-					this.particleImg,
+					this.particleTile[Utils.randomInt(0, 3)],
 					this.x,
 					this.y,
 					this.particleColor,
