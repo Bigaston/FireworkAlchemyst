@@ -3,7 +3,7 @@ Created in **a week** for a workshop around colors. Create with JavaScript, then
 
 In The Firework Alchemist, the player embodies a pyrotechnic artist: at his disposal, pigments, artifacts and glitter, which will allow him to create a firework.
 
-Available on [itch.io](https://nekromana.itch.io/the-firework-alchemist)
+Available on [itch.io](https://nekromana.itch.io/the-firework-alchemist)  
 The JavaScript Version is [available here](https://github.com/Bigaston/FireworkAlchemyst/tree/javascript)
 
 ![Cover](./.github/Cover.png)
